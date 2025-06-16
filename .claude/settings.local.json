@@ -13,7 +13,9 @@
       "Bash(git init:*)",
       "Bash(git config:*)",
       "Bash(rm:*)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "Bash(git push:*)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }
