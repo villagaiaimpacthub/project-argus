@@ -1,0 +1,46 @@
+{
+  "server": {
+    "port": 3002,
+    "host": "localhost",
+    "cors_enabled": true
+  },
+  "monitoring": {
+    "file_watch_interval": 2,
+    "git_check_interval": 5,
+    "process_check_interval": 10,
+    "error_check_interval": 3
+  },
+  "features": {
+    "enable_file_watching": true,
+    "enable_git_monitoring": true,
+    "enable_process_monitoring": true,
+    "enable_error_detection": true,
+    "enable_todo_scanning": true,
+    "enable_dependency_analysis": true
+  },
+  "excludes": {
+    "directories": [
+      "node_modules",
+      ".git",
+      "vendor",
+      "dist",
+      "build",
+      ".vscode",
+      ".idea"
+    ],
+    "file_patterns": [
+      "*.log",
+      "*.tmp",
+      "*.cache",
+      ".DS_Store"
+    ]
+  },
+  "languages": {
+    "supported": ["go", "javascript", "typescript", "python", "java", "rust", "cpp"],
+    "error_detection": {
+      "go": ["go build", "go vet"],
+      "javascript": ["eslint", "tsc"],
+      "python": ["flake8", "mypy"]
+    }
+  }
+} 

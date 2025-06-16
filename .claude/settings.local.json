@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod:*)",
+      "Bash(ls:*)",
+      "Bash(./test_self_monitoring.sh:*)",
+      "Bash(killall:*)",
+      "Bash(go mod:*)",
+      "Bash(go build:*)",
+      "Bash(./claude-code)",
+      "Bash(kill:*)",
+      "Bash(curl:*)",
+      "Bash(git init:*)",
+      "Bash(git config:*)",
+      "Bash(rm:*)",
+      "Bash(touch:*)"
+    ],
+    "deny": []
+  }
+}
