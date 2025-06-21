@@ -254,6 +254,7 @@ type EnhancedIntelligenceServer struct {
 	versionManager       *VersionManager
 	snapshotExporter     *SnapshotExporter
 	snapshotSharer       *SnapshotSharer
+	aiAnalysisManager    *AIAnalysisManager
 }
 
 // NewEnhancedIntelligenceServer creates an enhanced intelligence server
@@ -281,6 +282,9 @@ func NewEnhancedIntelligenceServer(workspace string) *EnhancedIntelligenceServer
 
 	// Setup enhanced routes
 	server.setupEnhancedRoutes()
+	
+	// Setup AI analysis routes
+	server.setupAIAnalysisRoutes()
 
 	// Start enhanced monitoring
 	epi.StartWatching()
@@ -621,6 +625,15 @@ func (eis *EnhancedIntelligenceServer) enhancedDashboardHandler(c *fiber.Ctx) er
 		"/api/topology/mindmap - Interactive mind-map visualization data",
 		"/api/snapshots - Investigation snapshot management",
 		"/api/investigation/state - Current investigation tracking",
+		"--- AI-Powered Analysis ---",
+		"/api/ai/analysis/status - AI analysis status and progress",
+		"/api/ai/analysis/latest - Latest AI analysis results",
+		"/api/ai/suggestions - AI-powered code suggestions",
+		"/api/ai/code-quality - Comprehensive code quality report",
+		"/api/ai/security-report - Security vulnerability analysis",
+		"/api/ai/performance-report - Performance optimization insights",
+		"/api/ai/recommendations - AI-generated recommendations",
+		"--- Interactive Dashboards ---",
 		"/snapshots - Investigation snapshots dashboard",
 		"/mindmap - Interactive project mind-map",
 		"/api/topology - Complete project topology",
@@ -651,6 +664,9 @@ func (eis *EnhancedIntelligenceServer) enhancedDashboardHandler(c *fiber.Ctx) er
 		"timestamp": time.Now(),
 		"features": []string{
 			"Multi-language detection (9 languages)",
+			"AI-powered code analysis and suggestions",
+			"Security vulnerability detection",
+			"Performance optimization insights",
 			"Investigation snapshot system",
 			"Interactive mind-map visualization",
 			"Human-AI collaboration tracking",

@@ -1,0 +1,1727 @@
+{
+  "id": "snap_1750536938187660783",
+  "name": "Investigation: enhance project argus with advanced AI development...",
+  "description": "Starting investigation for: enhance project argus with advanced AI development companion features",
+  "created_at": "2025-06-21T22:15:38.187667587+02:00",
+  "updated_at": "2025-06-21T22:15:38.187667683+02:00",
+  "version": 1,
+  "project_state": {
+    "timestamp": "2025-06-21T22:15:30.878492984+02:00",
+    "structure": {
+      "root_path": "/mnt/c/Go Fiber Router Backend/clean_build",
+      "files": [
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_code_suggestions.cpython-312.pyc",
+          "relative_path": "__pycache__/argus_code_suggestions.cpython-312.pyc",
+          "size": 22887,
+          "mod_time": "2025-06-21T22:14:59.722866+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+          "relative_path": "__pycache__/argus_context.cpython-312.pyc",
+          "size": 4652,
+          "mod_time": "2025-06-21T22:14:59.8620367+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+          "relative_path": "__pycache__/claude-argus-integration.cpython-312.pyc",
+          "size": 21131,
+          "mod_time": "2025-06-21T22:14:59.9720038+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+          "relative_path": "__pycache__/claude_argus_helpers.cpython-312.pyc",
+          "size": 13068,
+          "mod_time": "2025-06-21T22:15:00.112644+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+          "relative_path": "__pycache__/claude_argus_integration.cpython-312.pyc",
+          "size": 21131,
+          "mod_time": "2025-06-21T22:15:00.2307674+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+          "relative_path": "__pycache__/claude_code_plugin.cpython-312.pyc",
+          "size": 9815,
+          "mod_time": "2025-06-21T22:15:00.3902342+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/argus-enhanced",
+          "relative_path": "argus-enhanced",
+          "size": 11929285,
+          "mod_time": "2025-06-21T22:13:38.0075738+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/argus_code_suggestions.py",
+          "relative_path": "argus_code_suggestions.py",
+          "size": 18148,
+          "mod_time": "2025-06-21T22:01:02.0113433+02:00",
+          "is_executable": true,
+          "language": "python",
+          "line_count": 446
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/argus_context.py",
+          "relative_path": "argus_context.py",
+          "size": 3109,
+          "mod_time": "2025-06-21T21:59:31.7817223+02:00",
+          "is_executable": true,
+          "language": "python",
+          "line_count": 89
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/claude-argus-integration.py",
+          "relative_path": "claude-argus-integration.py",
+          "size": 14691,
+          "mod_time": "2025-06-21T22:06:19.5644927+02:00",
+          "is_executable": true,
+          "language": "python",
+          "line_count": 355
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/claude_argus_helpers.py",
+          "relative_path": "claude_argus_helpers.py",
+          "size": 9636,
+          "mod_time": "2025-06-21T21:57:38.3665629+02:00",
+          "is_executable": true,
+          "language": "python",
+          "line_count": 255
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/claude_argus_integration.py",
+          "relative_path": "claude_argus_integration.py",
+          "size": 14691,
+          "mod_time": "2025-06-21T22:06:07.2459159+02:00",
+          "is_executable": true,
+          "language": "python",
+          "line_count": 355
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/claude_code_plugin.py",
+          "relative_path": "claude_code_plugin.py",
+          "size": 8287,
+          "mod_time": "2025-06-21T21:58:52.1206418+02:00",
+          "is_executable": true,
+          "language": "python",
+          "line_count": 209
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+          "relative_path": "enhanced-argus",
+          "size": 11929285,
+          "mod_time": "2025-06-21T22:15:24+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/go.mod",
+          "relative_path": "go.mod",
+          "size": 787,
+          "mod_time": "2025-06-21T01:29:23.3766648+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/go.sum",
+          "relative_path": "go.sum",
+          "size": 2935,
+          "mod_time": "2025-06-21T01:29:23.3680515+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/go_plugin.go",
+          "relative_path": "go_plugin.go",
+          "size": 6337,
+          "mod_time": "2025-06-21T22:10:38.5900958+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 256
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/investigation_tracker.go",
+          "relative_path": "investigation_tracker.go",
+          "size": 10990,
+          "mod_time": "2025-06-21T22:10:38.6044424+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 425
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/javascript_plugin.go",
+          "relative_path": "javascript_plugin.go",
+          "size": 14231,
+          "mod_time": "2025-06-21T22:10:38.6193942+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 513
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_detection.go",
+          "relative_path": "language_detection.go",
+          "size": 24983,
+          "mod_time": "2025-06-21T22:10:38.6392221+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 696
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_integration.go",
+          "relative_path": "language_integration.go",
+          "size": 45447,
+          "mod_time": "2025-06-21T22:10:38.659177+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 1551
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_plugins.go",
+          "relative_path": "language_plugins.go",
+          "size": 10129,
+          "mod_time": "2025-06-21T22:10:38.6727188+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 388
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/main.go",
+          "relative_path": "main.go",
+          "size": 70865,
+          "mod_time": "2025-06-21T22:10:38.6910597+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 2691
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/mindmap.html",
+          "relative_path": "mindmap.html",
+          "size": 29000,
+          "mod_time": "2025-06-21T08:14:33.1070219+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/other_language_plugins.go",
+          "relative_path": "other_language_plugins.go",
+          "size": 10075,
+          "mod_time": "2025-06-21T22:10:38.7079237+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 367
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/python_plugin.go",
+          "relative_path": "python_plugin.go",
+          "size": 20345,
+          "mod_time": "2025-06-21T22:10:38.719962+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 778
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_export.md",
+          "relative_path": "snapshot_export.md",
+          "size": 585,
+          "mod_time": "2025-06-21T07:42:31.1531299+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_sharing.go",
+          "relative_path": "snapshot_sharing.go",
+          "size": 14785,
+          "mod_time": "2025-06-21T22:10:38.7365261+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 463
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_system.go",
+          "relative_path": "snapshot_system.go",
+          "size": 14856,
+          "mod_time": "2025-06-21T22:10:38.7504214+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 419
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_versioning.go",
+          "relative_path": "snapshot_versioning.go",
+          "size": 8568,
+          "mod_time": "2025-06-21T22:10:38.7673456+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 292
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshots.html",
+          "relative_path": "snapshots.html",
+          "size": 27285,
+          "mod_time": "2025-06-21T08:23:37.1105337+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/typescript_plugin.go",
+          "relative_path": "typescript_plugin.go",
+          "size": 11845,
+          "mod_time": "2025-06-21T22:10:38.7846293+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 416
+        }
+      ],
+      "directories": [
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build",
+          "relative_path": ".",
+          "file_count": 0,
+          "purpose": "general"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__",
+          "relative_path": "__pycache__",
+          "file_count": 0,
+          "purpose": "general"
+        }
+      ],
+      "project_type": "go",
+      "main_files": [
+        "main.go"
+      ],
+      "config_files": [
+        "go.mod"
+      ],
+      "total_files": 32,
+      "total_size": 24343864
+    },
+    "recent_changes": [
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:07:23.9264668+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:07:23.9924233+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:07:24.0658126+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:07:24.147193+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:07:24.2211601+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:07:31+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:07:43+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:07:57+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:09+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:21+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_code_suggestions.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:28.6001736+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:28.6620461+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:28.7306499+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:28.8308379+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:28.9239045+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:29.0142998+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:36+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:08:48+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:02+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:14+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:26+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_code_suggestions.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:32.7433097+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:32.8058113+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:32.8777962+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:32.9406157+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:33.015154+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:33.0757949+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:36+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:41+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:09:53+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:05+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:20+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:33+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_code_suggestions.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:36.9238251+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:37.0043947+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:37.0770755+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:37.16066+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:37.2468952+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:37.3312513+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/go_plugin.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.5900958+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/investigation_tracker.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.6044424+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/javascript_plugin.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.6193942+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_detection.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.6392221+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_integration.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.659177+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_plugins.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.6727188+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/main.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.6910597+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/other_language_plugins.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.7079237+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/python_plugin.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.719962+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_sharing.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.7365261+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_system.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.7504214+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_versioning.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.7673456+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/typescript_plugin.go",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:38.7846293+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:42.7930413+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:10:48+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:01+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:13+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:28+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_code_suggestions.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:41.1722384+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:41.2483402+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:41.3376506+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:41.427542+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:41.5248029+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:40+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:41.6454551+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:43+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:11:54+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:07+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:21+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:36+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_code_suggestions.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:45.6446511+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:45.7170082+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:45.8054815+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:45.909321+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:46.0330114+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:46.1491881+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:12:51.3237717+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:07.262543+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:22+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/argus-enhanced",
+        "type": "created",
+        "timestamp": "2025-06-21T22:13:38.0075738+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:38+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_code_suggestions.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:50.0384527+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:50.155175+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:50.2901885+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:50.3983649+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:50.5239663+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:50.6394151+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:52+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:13:55+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:14:06+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:14:23+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:14:37+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:14:58+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_code_suggestions.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:14:59.722866+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/argus_context.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:14:59.8620367+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude-argus-integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:14:59.9720038+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_helpers.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:15:00.112644+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_argus_integration.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:15:00.2307674+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/__pycache__/claude_code_plugin.cpython-312.pyc",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:15:00.3902342+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:15:09.6485005+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T22:15:24+02:00"
+      }
+    ],
+    "git_status": {
+      "branch": "main",
+      "commit_hash": "545581f0",
+      "commit_message": "Add enhanced Argus production binary",
+      "is_dirty": true,
+      "untracked_files": null,
+      "modified_files": [
+        ".claude/settings.local.json",
+        "clean_build/enhanced-argus"
+      ],
+      "staged_files": null,
+      "ahead": 0,
+      "behind": 0,
+      "last_commit_time": "2025-06-21T22:14:58+02:00"
+    },
+    "active_errors": [],
+    "build_status": {
+      "is_building": false,
+      "last_build_time": "2025-06-21T22:15:38.138432645+02:00",
+      "success": true,
+      "duration": "",
+      "output": "",
+      "errors": null,
+      "warnings": null
+    },
+    "running_processes": [
+      {
+        "pid": 211,
+        "name": "/usr/bin/python3",
+        "command": "/usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal",
+        "start_time": "2025-06-21T22:15:30.432631076+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 14698,
+        "name": "/bin/bash",
+        "command": "/bin/bash -c -l source /tmp/claude-shell-snapshot-2f16 \u0026\u0026 eval 'cd /mnt/c/task-dashboard \u0026\u0026 python3 -m http.server 3001 \u0026' \\\u003c /dev/null \u0026\u0026 pwd -P \u003e| /tmp/claude-2291-cwd",
+        "start_time": "2025-06-21T22:15:30.43264064+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 14700,
+        "name": "python3",
+        "command": "python3 -m http.server 3001",
+        "start_time": "2025-06-21T22:15:30.432657142+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 17582,
+        "name": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python",
+        "command": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+        "start_time": "2025-06-21T22:15:30.432669331+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 17591,
+        "name": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python",
+        "command": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python -c from multiprocessing.resource_tracker import main;main(4)",
+        "start_time": "2025-06-21T22:15:30.432675144+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 22053,
+        "name": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python",
+        "command": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=5, pipe_handle=11) --multiprocessing-fork",
+        "start_time": "2025-06-21T22:15:30.432678332+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 34087,
+        "name": "python3",
+        "command": "python3 -m http.server 8080",
+        "start_time": "2025-06-21T22:15:30.432679457+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 2165988,
+        "name": "python3",
+        "command": "python3 -m http.server 3000",
+        "start_time": "2025-06-21T22:15:30.432681051+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      }
+    ],
+    "dependencies": [
+      {
+        "name": "github.com/gofiber/fiber/v2",
+        "version": "v2.52.8",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/gofiber/websocket/v2",
+        "version": "v2.2.1",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/andybalholm/brotli",
+        "version": "v1.1.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/fasthttp/websocket",
+        "version": "v1.5.3",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/google/uuid",
+        "version": "v1.6.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/klauspost/compress",
+        "version": "v1.17.9",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/mattn/go-colorable",
+        "version": "v0.1.13",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/mattn/go-isatty",
+        "version": "v0.0.20",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/mattn/go-runewidth",
+        "version": "v0.0.16",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/rivo/uniseg",
+        "version": "v0.2.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/savsgio/gotils",
+        "version": "v0.0.0-20230208104028-c358bd845dee",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/valyala/bytebufferpool",
+        "version": "v1.0.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/valyala/fasthttp",
+        "version": "v1.51.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/valyala/tcplisten",
+        "version": "v1.0.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "golang.org/x/sys",
+        "version": "v0.28.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      }
+    ],
+    "todos": [
+      {
+        "file": "argus_code_suggestions.py",
+        "line": 143,
+        "type": "TODO",
+        "message": "TODO/FIXME comments"
+      },
+      {
+        "file": "argus_code_suggestions.py",
+        "line": 144,
+        "type": "TODO",
+        "message": "TODO' in line or 'FIXME' in line:"
+      },
+      {
+        "file": "argus_code_suggestions.py",
+        "line": 145,
+        "type": "TODO",
+        "message": "TODO/FIXME comment\")"
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 141,
+        "type": "TODO",
+        "message": "todos(self) -\u003e List[Dict[str, Any]]:"
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 142,
+        "type": "TODO",
+        "message": "TODO/FIXME items found in code\"\"\""
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 144,
+        "type": "TODO",
+        "message": "todos\")"
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 146,
+        "type": "TODO",
+        "message": "todos\", [])"
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 254,
+        "type": "TODO",
+        "message": "todos\": len(self.argus.get_todos()),"
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 264,
+        "type": "TODO",
+        "message": "todos = self.argus.get_todos()"
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 271,
+        "type": "TODO",
+        "message": "todo_count\": len(todos),"
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 282,
+        "type": "TODO",
+        "message": "todo_count\"] \u003e 20:"
+      },
+      {
+        "file": "claude-argus-integration.py",
+        "line": 283,
+        "type": "TODO",
+        "message": "TODO items to reduce technical debt\")"
+      },
+      {
+        "file": "claude_argus_helpers.py",
+        "line": 106,
+        "type": "TODO",
+        "message": "todos() -\u003e List[Dict[str, Any]]:"
+      },
+      {
+        "file": "claude_argus_helpers.py",
+        "line": 107,
+        "type": "TODO",
+        "message": "TODO/FIXME items found in code\"\"\""
+      },
+      {
+        "file": "claude_argus_helpers.py",
+        "line": 111,
+        "type": "TODO",
+        "message": "todos()"
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 141,
+        "type": "TODO",
+        "message": "todos(self) -\u003e List[Dict[str, Any]]:"
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 142,
+        "type": "TODO",
+        "message": "TODO/FIXME items found in code\"\"\""
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 144,
+        "type": "TODO",
+        "message": "todos\")"
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 146,
+        "type": "TODO",
+        "message": "todos\", [])"
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 254,
+        "type": "TODO",
+        "message": "todos\": len(self.argus.get_todos()),"
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 264,
+        "type": "TODO",
+        "message": "todos = self.argus.get_todos()"
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 271,
+        "type": "TODO",
+        "message": "todo_count\": len(todos),"
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 282,
+        "type": "TODO",
+        "message": "todo_count\"] \u003e 20:"
+      },
+      {
+        "file": "claude_argus_integration.py",
+        "line": 283,
+        "type": "TODO",
+        "message": "TODO items to reduce technical debt\")"
+      },
+      {
+        "file": "claude_code_plugin.py",
+        "line": 107,
+        "type": "TODO",
+        "message": "TODO' in line or 'FIXME' in line for line in lines):"
+      },
+      {
+        "file": "claude_code_plugin.py",
+        "line": 108,
+        "type": "TODO",
+        "message": "TODO/FIXME comments in this code\")"
+      },
+      {
+        "file": "language_detection.go",
+        "line": 692,
+        "type": "TODO",
+        "message": "TODO: Implement service discovery, API endpoint detection, and relationship mapping"
+      },
+      {
+        "file": "language_integration.go",
+        "line": 636,
+        "type": "TODO",
+        "message": "todos - TODO items in code\","
+      },
+      {
+        "file": "main.go",
+        "line": 130,
+        "type": "TODO",
+        "message": "TODOs            []TodoItem        `json:\"todos\"`"
+      },
+      {
+        "file": "main.go",
+        "line": 251,
+        "type": "TODO",
+        "message": "TodoItem represents TODO/FIXME items found in code"
+      },
+      {
+        "file": "main.go",
+        "line": 252,
+        "type": "TODO",
+        "message": "TodoItem struct {"
+      },
+      {
+        "file": "main.go",
+        "line": 255,
+        "type": "TODO",
+        "message": "TODO, FIXME, HACK, NOTE"
+      },
+      {
+        "file": "main.go",
+        "line": 414,
+        "type": "TODO",
+        "message": "TODOs:            pi.findTodos(),"
+      },
+      {
+        "file": "main.go",
+        "line": 772,
+        "type": "XXX",
+        "message": "xxxx: message"
+      },
+      {
+        "file": "main.go",
+        "line": 1143,
+        "type": "NOTE",
+        "message": "NotExist(err) {"
+      },
+      {
+        "file": "main.go",
+        "line": 1388,
+        "type": "TODO",
+        "message": "TODO finder"
+      },
+      {
+        "file": "main.go",
+        "line": 1389,
+        "type": "TODO",
+        "message": "Todos() []TodoItem {"
+      },
+      {
+        "file": "main.go",
+        "line": 1390,
+        "type": "TODO",
+        "message": "todos := []TodoItem{}"
+      },
+      {
+        "file": "main.go",
+        "line": 1410,
+        "type": "TODO",
+        "message": "TODO, FIXME, HACK, NOTE patterns"
+      },
+      {
+        "file": "main.go",
+        "line": 1411,
+        "type": "TODO",
+        "message": "TODO\", \"FIXME\", \"HACK\", \"NOTE\", \"XXX\"}"
+      },
+      {
+        "file": "main.go",
+        "line": 1421,
+        "type": "TODO",
+        "message": "todos = append(todos, TodoItem{"
+      },
+      {
+        "file": "main.go",
+        "line": 1435,
+        "type": "TODO",
+        "message": "todos"
+      },
+      {
+        "file": "main.go",
+        "line": 1551,
+        "type": "TODO",
+        "message": "todos\", is.todosHandler)"
+      },
+      {
+        "file": "main.go",
+        "line": 1603,
+        "type": "TODO",
+        "message": "todos - TODO items in code\","
+      },
+      {
+        "file": "main.go",
+        "line": 1684,
+        "type": "TODO",
+        "message": "todosHandler(c *fiber.Ctx) error {"
+      },
+      {
+        "file": "main.go",
+        "line": 1690,
+        "type": "TODO",
+        "message": "TODOs)"
+      },
+      {
+        "file": "main.go",
+        "line": 1844,
+        "type": "NOTE",
+        "message": "NotExist(err) {"
+      },
+      {
+        "file": "main.go",
+        "line": 1853,
+        "type": "NOTE",
+        "message": "Note: This doesn't actually change the workspace in the current implementation"
+      },
+      {
+        "file": "main.go",
+        "line": 1861,
+        "type": "NOTE",
+        "message": "note\":            \"Server restart required for full workspace monitoring change\","
+      },
+      {
+        "file": "main.go",
+        "line": 2221,
+        "type": "TODO",
+        "message": "TODO items"
+      },
+      {
+        "file": "main.go",
+        "line": 2222,
+        "type": "TODO",
+        "message": "todo := range snapshot.TODOs {"
+      },
+      {
+        "file": "main.go",
+        "line": 2223,
+        "type": "TODO",
+        "message": "todo.Message), queryLower) {"
+      },
+      {
+        "file": "main.go",
+        "line": 2225,
+        "type": "TODO",
+        "message": "todo\","
+      },
+      {
+        "file": "main.go",
+        "line": 2226,
+        "type": "TODO",
+        "message": "todo.File,"
+      },
+      {
+        "file": "main.go",
+        "line": 2227,
+        "type": "TODO",
+        "message": "todo.Line,"
+      },
+      {
+        "file": "main.go",
+        "line": 2228,
+        "type": "TODO",
+        "message": "todo.Message,"
+      },
+      {
+        "file": "main.go",
+        "line": 2229,
+        "type": "TODO",
+        "message": "todo\","
+      },
+      {
+        "file": "main.go",
+        "line": 2287,
+        "type": "TODO",
+        "message": "todo_count\":       len(snapshot.TODOs),"
+      },
+      {
+        "file": "python_plugin.go",
+        "line": 343,
+        "type": "NOTE",
+        "message": "note): (.+)`)"
+      },
+      {
+        "file": "python_plugin.go",
+        "line": 352,
+        "type": "NOTE",
+        "message": "note\" {"
+      },
+      {
+        "file": "typescript_plugin.go",
+        "line": 147,
+        "type": "XXX",
+        "message": "xxxx: message"
+      }
+    ],
+    "health": {
+      "score": 100,
+      "error_count": 0,
+      "warning_count": 0,
+      "test_coverage": 0,
+      "technical_debt": "low",
+      "last_health_check": "2025-06-21T22:15:31.207130316+02:00"
+    },
+    "languages": [
+      {
+        "language": {
+          "name": "Go",
+          "extensions": [
+            ".go"
+          ],
+          "config_files": [
+            "go.mod",
+            "go.sum",
+            "go.work"
+          ],
+          "lint_tools": [
+            "golint",
+            "golangci-lint",
+            "staticcheck",
+            "vet"
+          ],
+          "test_frameworks": [
+            "testing",
+            "testify",
+            "ginkgo",
+            "gomega"
+          ],
+          "package_managers": [
+            "go"
+          ],
+          "build_tools": [
+            "go"
+          ],
+          "frameworks": [
+            "gin",
+            "echo",
+            "fiber",
+            "chi",
+            "gorilla",
+            "beego"
+          ],
+          "default_ports": [
+            8080,
+            8000,
+            3000,
+            9000
+          ]
+        },
+        "file_count": 13,
+        "line_count": 9268,
+        "main_files": [
+          "main.go"
+        ],
+        "config_files": [
+          "go.mod",
+          "go.sum"
+        ],
+        "frameworks": [
+          {
+            "name": "Fiber",
+            "language": "go",
+            "version": "",
+            "config_file": "go.mod",
+            "default_port": 3000,
+            "dev_command": "go run main.go",
+            "build_command": "go build",
+            "test_command": "go test ./...",
+            "metadata": null
+          }
+        ],
+        "build_tools": [],
+        "has_tests": false,
+        "has_linting": false,
+        "package_manager": "go"
+      },
+      {
+        "language": {
+          "name": "Python",
+          "extensions": [
+            ".py",
+            ".pyw",
+            ".pyx",
+            ".pyi"
+          ],
+          "config_files": [
+            "requirements.txt",
+            "pyproject.toml",
+            "setup.py",
+            "setup.cfg",
+            "Pipfile",
+            "poetry.lock"
+          ],
+          "lint_tools": [
+            "pylint",
+            "flake8",
+            "black",
+            "mypy",
+            "ruff",
+            "bandit"
+          ],
+          "test_frameworks": [
+            "pytest",
+            "unittest",
+            "nose2",
+            "doctest"
+          ],
+          "package_managers": [
+            "pip",
+            "poetry",
+            "conda",
+            "pipenv"
+          ],
+          "build_tools": [
+            "setuptools",
+            "poetry",
+            "flit",
+            "wheel"
+          ],
+          "frameworks": [
+            "django",
+            "flask",
+            "fastapi",
+            "tornado",
+            "pyramid",
+            "bottle"
+          ],
+          "default_ports": [
+            8000,
+            5000,
+            8080,
+            9000
+          ]
+        },
+        "file_count": 6,
+        "line_count": 1709,
+        "main_files": [],
+        "config_files": [],
+        "frameworks": [],
+        "build_tools": [],
+        "has_tests": false,
+        "has_linting": false,
+        "package_manager": ""
+      }
+    ],
+    "topology": {
+      "languages": [
+        {
+          "language": {
+            "name": "Go",
+            "extensions": [
+              ".go"
+            ],
+            "config_files": [
+              "go.mod",
+              "go.sum",
+              "go.work"
+            ],
+            "lint_tools": [
+              "golint",
+              "golangci-lint",
+              "staticcheck",
+              "vet"
+            ],
+            "test_frameworks": [
+              "testing",
+              "testify",
+              "ginkgo",
+              "gomega"
+            ],
+            "package_managers": [
+              "go"
+            ],
+            "build_tools": [
+              "go"
+            ],
+            "frameworks": [
+              "gin",
+              "echo",
+              "fiber",
+              "chi",
+              "gorilla",
+              "beego"
+            ],
+            "default_ports": [
+              8080,
+              8000,
+              3000,
+              9000
+            ]
+          },
+          "file_count": 13,
+          "line_count": 9268,
+          "main_files": [
+            "main.go"
+          ],
+          "config_files": [
+            "go.mod",
+            "go.sum"
+          ],
+          "frameworks": [
+            {
+              "name": "Fiber",
+              "language": "go",
+              "version": "",
+              "config_file": "go.mod",
+              "default_port": 3000,
+              "dev_command": "go run main.go",
+              "build_command": "go build",
+              "test_command": "go test ./...",
+              "metadata": null
+            }
+          ],
+          "build_tools": [],
+          "has_tests": false,
+          "has_linting": false,
+          "package_manager": "go"
+        },
+        {
+          "language": {
+            "name": "Python",
+            "extensions": [
+              ".py",
+              ".pyw",
+              ".pyx",
+              ".pyi"
+            ],
+            "config_files": [
+              "requirements.txt",
+              "pyproject.toml",
+              "setup.py",
+              "setup.cfg",
+              "Pipfile",
+              "poetry.lock"
+            ],
+            "lint_tools": [
+              "pylint",
+              "flake8",
+              "black",
+              "mypy",
+              "ruff",
+              "bandit"
+            ],
+            "test_frameworks": [
+              "pytest",
+              "unittest",
+              "nose2",
+              "doctest"
+            ],
+            "package_managers": [
+              "pip",
+              "poetry",
+              "conda",
+              "pipenv"
+            ],
+            "build_tools": [
+              "setuptools",
+              "poetry",
+              "flit",
+              "wheel"
+            ],
+            "frameworks": [
+              "django",
+              "flask",
+              "fastapi",
+              "tornado",
+              "pyramid",
+              "bottle"
+            ],
+            "default_ports": [
+              8000,
+              5000,
+              8080,
+              9000
+            ]
+          },
+          "file_count": 6,
+          "line_count": 1709,
+          "main_files": [],
+          "config_files": [],
+          "frameworks": [],
+          "build_tools": [],
+          "has_tests": false,
+          "has_linting": false,
+          "package_manager": ""
+        }
+      ],
+      "services": [],
+      "databases": [],
+      "apis": [],
+      "relations": [],
+      "updated_at": "2025-06-21T22:15:31.345503461+02:00"
+    },
+    "updated_at": "2025-06-21T22:15:38.187465375+02:00"
+  },
+  "investigation": {
+    "focus": "Initial investigation",
+    "goals": [],
+    "current_phase": "discovery",
+    "questions": [],
+    "hypotheses": [],
+    "findings": [],
+    "next_steps": [],
+    "blockers": []
+  },
+  "collaboration": {
+    "session_id": "sess_1750536938187667683",
+    "interaction_count": 0,
+    "last_interaction": "2025-06-21T22:15:38.187719339+02:00",
+    "ai_recommendations": [],
+    "human_decisions": [],
+    "shared_context": {},
+    "communication_log": [],
+    "tool_usage": {}
+  },
+  "metadata": {
+    "tags": [
+      "initial"
+    ],
+    "project_path": "/mnt/c/Go Fiber Router Backend/clean_build",
+    "environment": {
+      "go_version": "1.21",
+      "os": "linux",
+      "timestamp": "2025-06-21T22:15:38+02:00"
+    },
+    "size": 37244,
+    "checksum": "sha256:b25e76b60b0267a9ecb307e7ec2144bc220516186e350ba5571abbe999f46eae",
+    "related_snapshots": [],
+    "export_formats": [
+      "json",
+      "markdown",
+      "html"
+    ]
+  }
+}

@@ -26,7 +26,8 @@
       "Bash(cp:*)",
       "Bash(mv:*)",
       "Bash(python3:*)",
-      "Bash(go vet:*)"
+      "Bash(go vet:*)",
+      "Bash(go test:*)"
     ],
     "deny": []
   }
