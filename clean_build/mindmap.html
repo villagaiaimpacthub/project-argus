@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Argus - Interactive Mind Map</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            color: #64ffda;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #64ffda;
+            color: #1e3c72;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #4fd3b3;
+            transform: translateY(-2px);
+        }
+
+        .view-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .view-toggle button {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-toggle button.active {
+            background: #64ffda;
+            color: #1e3c72;
+        }
+
+        .status-bar {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .status-dot.healthy { background: #4caf50; }
+        .status-dot.warning { background: #ff9800; }
+        .status-dot.error { background: #f44336; }
+
+        #mindmap {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .node:hover {
+            transform: scale(1.1);
+        }
+
+        .node-circle {
+            transition: all 0.3s ease;
+        }
+
+        .node-text {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 12px;
+            fill: white;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+
+        .link {
+            stroke: #64ffda;
+            stroke-opacity: 0.6;
+            stroke-width: 2;
+            fill: none;
+            transition: all 0.3s ease;
+        }
+
+        .link:hover {
+            stroke-opacity: 1;
+            stroke-width: 3;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid #64ffda;
+            max-width: 300px;
+        }
+
+        .legend {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid #64ffda;
+        }
+
+        .legend h3 {
+            margin-bottom: 10px;
+            color: #64ffda;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px 0;
+            font-size: 12px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        .minimap {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 200px;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #64ffda;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(100, 255, 218, 0.3);
+            border-top: 4px solid #64ffda;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: rgba(244, 67, 54, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px;
+            border-left: 4px solid #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧠 Project Argus Mind Map</h1>
+        <div class="controls">
+            <div class="view-toggle">
+                <button id="humanView" class="active">Human View</button>
+                <button id="aiView">AI View</button>
+            </div>
+            <button class="btn" id="refreshBtn">🔄 Refresh</button>
+            <button class="btn" id="exportBtn">📸 Export</button>
+        </div>
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="status-dot healthy"></div>
+                <span id="healthStatus">Loading...</span>
+            </div>
+            <div class="status-item">
+                <span id="languageCount">Languages: -</span>
+            </div>
+            <div class="status-item">
+                <span id="serviceCount">Services: -</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="mindmap">
+        <div class="loading">
+            <div class="spinner"></div>
+            <div>Loading project topology...</div>
+        </div>
+    </div>
+
+    <div class="legend">
+        <h3>Legend</h3>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #64ffda;"></div>
+            <span>Languages</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ff9800;"></div>
+            <span>Services</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #4caf50;"></div>
+            <span>Dependencies</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #f44336;"></div>
+            <span>Errors</span>
+        </div>
+    </div>
+
+    <div class="minimap">
+        <svg id="minimapSvg" width="200" height="150"></svg>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        class ProjectMindMap {
+            constructor() {
+                this.width = window.innerWidth;
+                this.height = window.innerHeight - 60;
+                this.currentView = 'human';
+                this.data = null;
+                this.simulation = null;
+                
+                this.initSVG();
+                this.initEventListeners();
+                this.loadData();
+                this.startAutoRefresh();
+            }
+
+            initSVG() {
+                // Clear loading screen
+                d3.select('#mindmap').select('.loading').remove();
+
+                // Main SVG
+                this.svg = d3.select('#mindmap')
+                    .append('svg')
+                    .attr('width', this.width)
+                    .attr('height', this.height);
+
+                // Define gradients and patterns
+                const defs = this.svg.append('defs');
+                
+                // Glow filter
+                const filter = defs.append('filter')
+                    .attr('id', 'glow');
+                filter.append('feGaussianBlur')
+                    .attr('stdDeviation', '3')
+                    .attr('result', 'coloredBlur');
+                const feMerge = filter.append('feMerge');
+                feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+                feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+                // Create main group with zoom behavior
+                this.g = this.svg.append('g');
+                
+                // Add zoom behavior
+                const zoom = d3.zoom()
+                    .scaleExtent([0.1, 4])
+                    .on('zoom', (event) => {
+                        this.g.attr('transform', event.transform);
+                        this.updateMinimap();
+                    });
+                
+                this.svg.call(zoom);
+
+                // Create groups for different elements
+                this.linkGroup = this.g.append('g').attr('class', 'links');
+                this.nodeGroup = this.g.append('g').attr('class', 'nodes');
+            }
+
+            initEventListeners() {
+                // View toggle
+                document.getElementById('humanView').addEventListener('click', () => {
+                    this.switchView('human');
+                });
+                document.getElementById('aiView').addEventListener('click', () => {
+                    this.switchView('ai');
+                });
+
+                // Refresh button
+                document.getElementById('refreshBtn').addEventListener('click', () => {
+                    this.loadData();
+                });
+
+                // Export button
+                document.getElementById('exportBtn').addEventListener('click', () => {
+                    this.exportSVG();
+                });
+
+                // Window resize
+                window.addEventListener('resize', () => {
+                    this.handleResize();
+                });
+            }
+
+            async loadData() {
+                try {
+                    // Load topology data
+                    const [topology, languages, snapshot] = await Promise.all([
+                        fetch('/api/topology').then(r => r.json()),
+                        fetch('/api/languages').then(r => r.json()),
+                        fetch('/api/enhanced-snapshot').then(r => r.json())
+                    ]);
+
+                    this.data = {
+                        topology,
+                        languages: languages.languages || [],
+                        snapshot
+                    };
+
+                    this.updateStatusBar();
+                    this.renderMindMap();
+
+                } catch (error) {
+                    console.error('Failed to load data:', error);
+                    this.showError('Failed to load project data. Make sure Argus is running.');
+                }
+            }
+
+            updateStatusBar() {
+                const health = this.data.snapshot?.health || { score: 0 };
+                const languageCount = this.data.languages?.length || 0;
+                const serviceCount = this.data.topology?.services?.length || 0;
+
+                // Health status
+                const healthElement = document.getElementById('healthStatus');
+                healthElement.textContent = `Health: ${health.score}/100`;
+                
+                const healthDot = healthElement.parentElement.querySelector('.status-dot');
+                healthDot.className = 'status-dot ' + (
+                    health.score >= 80 ? 'healthy' : 
+                    health.score >= 50 ? 'warning' : 'error'
+                );
+
+                // Counts
+                document.getElementById('languageCount').textContent = `Languages: ${languageCount}`;
+                document.getElementById('serviceCount').textContent = `Services: ${serviceCount}`;
+            }
+
+            renderMindMap() {
+                if (!this.data) return;
+
+                const nodes = this.createNodes();
+                const links = this.createLinks(nodes);
+
+                this.renderNodes(nodes);
+                this.renderLinks(links);
+                this.startSimulation(nodes, links);
+                this.updateMinimap();
+            }
+
+            createNodes() {
+                const nodes = [];
+                
+                // Project root node
+                nodes.push({
+                    id: 'project',
+                    type: 'project',
+                    name: 'Project',
+                    size: 40,
+                    color: '#64ffda',
+                    x: this.width / 2,
+                    y: this.height / 2
+                });
+
+                // Language nodes
+                this.data.languages.forEach((lang, i) => {
+                    nodes.push({
+                        id: `lang-${lang.language.name}`,
+                        type: 'language',
+                        name: lang.language.name,
+                        fileCount: lang.file_count,
+                        lineCount: lang.line_count,
+                        frameworks: lang.frameworks || [],
+                        size: Math.max(20, Math.min(35, lang.file_count * 3)),
+                        color: this.getLanguageColor(lang.language.name)
+                    });
+                });
+
+                // Service nodes
+                if (this.data.topology.services) {
+                    this.data.topology.services.forEach(service => {
+                        nodes.push({
+                            id: `service-${service.id}`,
+                            type: 'service',
+                            name: service.name,
+                            language: service.language,
+                            framework: service.framework,
+                            port: service.port,
+                            status: service.status,
+                            size: 25,
+                            color: service.status === 'running' ? '#4caf50' : '#ff9800'
+                        });
+                    });
+                }
+
+                // Error nodes (if in AI view)
+                if (this.currentView === 'ai' && this.data.snapshot.active_errors) {
+                    const errorGroups = this.groupErrorsByFile(this.data.snapshot.active_errors);
+                    Object.entries(errorGroups).forEach(([file, errors]) => {
+                        nodes.push({
+                            id: `error-${file}`,
+                            type: 'error',
+                            name: `${file} (${errors.length} errors)`,
+                            errors: errors,
+                            size: Math.max(15, Math.min(30, errors.length * 2)),
+                            color: '#f44336'
+                        });
+                    });
+                }
+
+                return nodes;
+            }
+
+            createLinks(nodes) {
+                const links = [];
+                const nodeMap = new Map(nodes.map(n => [n.id, n]));
+
+                // Connect languages to project
+                nodes.filter(n => n.type === 'language').forEach(lang => {
+                    links.push({
+                        source: 'project',
+                        target: lang.id,
+                        type: 'hierarchy'
+                    });
+                });
+
+                // Connect services to their languages
+                nodes.filter(n => n.type === 'service').forEach(service => {
+                    const langId = `lang-${service.language}`;
+                    if (nodeMap.has(langId)) {
+                        links.push({
+                            source: langId,
+                            target: service.id,
+                            type: 'association'
+                        });
+                    }
+                });
+
+                // Connect errors to languages (AI view)
+                if (this.currentView === 'ai') {
+                    nodes.filter(n => n.type === 'error').forEach(error => {
+                        // Try to determine language from file extension
+                        const ext = error.name.split('.').pop();
+                        const language = this.getLanguageFromExtension(ext);
+                        const langId = `lang-${language}`;
+                        
+                        if (nodeMap.has(langId)) {
+                            links.push({
+                                source: langId,
+                                target: error.id,
+                                type: 'error'
+                            });
+                        }
+                    });
+                }
+
+                return links;
+            }
+
+            renderNodes(nodes) {
+                const nodeSelection = this.nodeGroup
+                    .selectAll('.node')
+                    .data(nodes, d => d.id);
+
+                const nodeEnter = nodeSelection.enter()
+                    .append('g')
+                    .attr('class', 'node')
+                    .call(d3.drag()
+                        .on('start', this.dragstarted.bind(this))
+                        .on('drag', this.dragged.bind(this))
+                        .on('end', this.dragended.bind(this)));
+
+                // Add circles
+                nodeEnter.append('circle')
+                    .attr('class', 'node-circle')
+                    .attr('r', d => d.size)
+                    .attr('fill', d => d.color)
+                    .attr('stroke', '#fff')
+                    .attr('stroke-width', 2)
+                    .style('filter', 'url(#glow)');
+
+                // Add labels
+                nodeEnter.append('text')
+                    .attr('class', 'node-text')
+                    .attr('dy', '0.35em')
+                    .text(d => d.name);
+
+                // Add tooltips
+                nodeEnter
+                    .on('mouseover', this.showTooltip.bind(this))
+                    .on('mouseout', this.hideTooltip.bind(this));
+
+                // Update existing nodes
+                nodeSelection.merge(nodeEnter)
+                    .select('.node-circle')
+                    .attr('r', d => d.size)
+                    .attr('fill', d => d.color);
+
+                // Remove old nodes
+                nodeSelection.exit().remove();
+            }
+
+            renderLinks(links) {
+                const linkSelection = this.linkGroup
+                    .selectAll('.link')
+                    .data(links, d => `${d.source.id || d.source}-${d.target.id || d.target}`);
+
+                linkSelection.enter()
+                    .append('line')
+                    .attr('class', 'link')
+                    .attr('stroke-dasharray', d => d.type === 'error' ? '5,5' : 'none');
+
+                linkSelection.exit().remove();
+            }
+
+            startSimulation(nodes, links) {
+                this.simulation = d3.forceSimulation(nodes)
+                    .force('link', d3.forceLink(links).id(d => d.id).distance(80))
+                    .force('charge', d3.forceManyBody().strength(-300))
+                    .force('center', d3.forceCenter(this.width / 2, this.height / 2))
+                    .force('collision', d3.forceCollide().radius(d => d.size + 5));
+
+                this.simulation.on('tick', () => {
+                    this.linkGroup.selectAll('.link')
+                        .attr('x1', d => d.source.x)
+                        .attr('y1', d => d.source.y)
+                        .attr('x2', d => d.target.x)
+                        .attr('y2', d => d.target.y);
+
+                    this.nodeGroup.selectAll('.node')
+                        .attr('transform', d => `translate(${d.x},${d.y})`);
+                });
+            }
+
+            switchView(view) {
+                this.currentView = view;
+                
+                // Update button states
+                document.querySelectorAll('.view-toggle button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById(view + 'View').classList.add('active');
+
+                // Re-render with new view
+                this.renderMindMap();
+            }
+
+            showTooltip(event, d) {
+                const tooltip = document.getElementById('tooltip');
+                let content = `<strong>${d.name}</strong><br>`;
+                
+                switch (d.type) {
+                    case 'language':
+                        content += `Files: ${d.fileCount}<br>`;
+                        content += `Lines: ${d.lineCount}<br>`;
+                        if (d.frameworks.length > 0) {
+                            content += `Frameworks: ${d.frameworks.map(f => f.name).join(', ')}`;
+                        }
+                        break;
+                    case 'service':
+                        content += `Language: ${d.language}<br>`;
+                        content += `Framework: ${d.framework}<br>`;
+                        content += `Port: ${d.port}<br>`;
+                        content += `Status: ${d.status}`;
+                        break;
+                    case 'error':
+                        content += `Errors: ${d.errors.length}<br>`;
+                        content += d.errors.slice(0, 3).map(e => e.message).join('<br>');
+                        break;
+                }
+
+                tooltip.innerHTML = content;
+                tooltip.style.left = (event.pageX + 10) + 'px';
+                tooltip.style.top = (event.pageY + 10) + 'px';
+                tooltip.style.opacity = 1;
+            }
+
+            hideTooltip() {
+                document.getElementById('tooltip').style.opacity = 0;
+            }
+
+            dragstarted(event, d) {
+                if (!event.active) this.simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            dragended(event, d) {
+                if (!event.active) this.simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+
+            updateMinimap() {
+                // Simplified minimap implementation
+                const minimapSvg = d3.select('#minimapSvg');
+                // This would show a zoomed-out view of the entire graph
+            }
+
+            exportSVG() {
+                const svgElement = this.svg.node();
+                const serializer = new XMLSerializer();
+                const svgString = serializer.serializeToString(svgElement);
+                
+                const blob = new Blob([svgString], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.download = 'project-mindmap.svg';
+                link.href = url;
+                link.click();
+                
+                URL.revokeObjectURL(url);
+            }
+
+            handleResize() {
+                this.width = window.innerWidth;
+                this.height = window.innerHeight - 60;
+                
+                this.svg
+                    .attr('width', this.width)
+                    .attr('height', this.height);
+
+                if (this.simulation) {
+                    this.simulation
+                        .force('center', d3.forceCenter(this.width / 2, this.height / 2))
+                        .restart();
+                }
+            }
+
+            startAutoRefresh() {
+                setInterval(() => {
+                    this.loadData();
+                }, 30000); // Refresh every 30 seconds
+            }
+
+            showError(message) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.innerHTML = `<strong>Error:</strong> ${message}`;
+                document.getElementById('mindmap').appendChild(errorDiv);
+            }
+
+            // Helper methods
+            getLanguageColor(language) {
+                const colors = {
+                    'javascript': '#f7df1e',
+                    'typescript': '#3178c6',
+                    'python': '#3776ab',
+                    'go': '#00add8',
+                    'java': '#ed8b00',
+                    'csharp': '#239120',
+                    'rust': '#000000',
+                    'php': '#777bb4',
+                    'ruby': '#cc342d'
+                };
+                return colors[language.toLowerCase()] || '#64ffda';
+            }
+
+            getLanguageFromExtension(ext) {
+                const extMap = {
+                    'js': 'javascript',
+                    'ts': 'typescript',
+                    'py': 'python',
+                    'go': 'go',
+                    'java': 'java',
+                    'cs': 'csharp',
+                    'rs': 'rust',
+                    'php': 'php',
+                    'rb': 'ruby'
+                };
+                return extMap[ext] || 'unknown';
+            }
+
+            groupErrorsByFile(errors) {
+                return errors.reduce((groups, error) => {
+                    const file = error.file || 'unknown';
+                    if (!groups[file]) groups[file] = [];
+                    groups[file].push(error);
+                    return groups;
+                }, {});
+            }
+        }
+
+        // Initialize the mind map when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ProjectMindMap();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+╭──────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Ready to code?                                                                               │
+│                                                                                              │
+│ Here is Claude's plan:                                                                       │
+│ ╭──────────────────────────────────────────────────────────────────────────────────────────╮ │
+│ │ Project Argus to HIVE AI Development Companion - Implementation Plan                     │ │
+│ │                                                                                          │ │
+│ │ 🎯 Overview                                                                              │ │
+│ │                                                                                          │ │
+│ │ Transform the existing Project Argus monitoring system into an AI development companion  │ │
+│ │ specifically designed for HIVE's multi-service architecture, with focus on service       │ │
+│ │ relationship intelligence and human-AI collaboration.                                    │ │
+│ │                                                                                          │ │
+│ │ 📋 Current State Analysis                                                                │ │
+│ │                                                                                          │ │
+│ │ Existing Strengths:                                                                      │ │
+│ │ - ✅ Solid Go Fiber backend (2,700+ lines) with comprehensive monitoring                  │ │
+│ │ - ✅ Real-time WebSocket infrastructure                                                   │ │
+│ │ - ✅ Multi-language error detection (Go, JS/TS, Python, Java)                             │ │
+│ │ - ✅ REST API with 15+ endpoints                                                          │ │
+│ │ - ✅ Web dashboard and CLI tools                                                          │ │
+│ │ - ✅ Process monitoring and management                                                    │ │
+│ │ - ✅ Git integration and file watching                                                    │ │
+│ │                                                                                          │ │
+│ │ What's Missing for HIVE Vision:                                                          │ │
+│ │ - ❌ Service discovery and relationship mapping                                           │ │
+│ │ - ❌ Mind-map visualization interface                                                     │ │
+│ │ - ❌ Snapshot system for human-AI collaboration                                           │ │
+│ │ - ❌ Database schema intelligence                                                         │ │
+│ │ - ❌ AI intent communication protocols                                                    │ │
+│ │ - ❌ Cross-service change impact analysis                                                 │ │
+│ │                                                                                          │ │
+│ │ 🏗️ Implementation Plan (6 Simple Phases)                                                 │ │
+│ │                                                                                          │ │
+│ │ Phase 1: Service Discovery Foundation (Week 1)                                           │ │
+│ │                                                                                          │ │
+│ │ Simple foundation for detecting HIVE components                                          │ │
+│ │                                                                                          │ │
+│ │ Tasks:                                                                                   │ │
+│ │ 1. Add service discovery types to main.go                                                │ │
+│ │   - ServiceTopology struct with nodes/edges                                              │ │
+│ │   - DetectedService with port/endpoint detection                                         │ │
+│ │   - ServiceRelation for mapping connections                                              │ │
+│ │ 2. Create service scanner                                                                │ │
+│ │   - Detect running services by port scanning (3000-8000 range)                           │ │
+│ │   - Identify HIVE components (VOX, TASK, CRM, FUND, etc.)                                │ │
+│ │   - Check for common config files (package.json, go.mod, etc.)                           │ │
+│ │ 3. Add basic REST endpoints                                                              │ │
+│ │   - GET /api/services - List detected services                                           │ │
+│ │   - GET /api/topology - Service relationship map                                         │ │
+│ │   - POST /api/services/scan - Trigger service discovery                                  │ │
+│ │ 4. Update dashboard.html                                                                 │ │
+│ │   - Add "Services" section showing detected components                                   │ │
+│ │   - Simple table view of services with status                                            │ │
+│ │                                                                                          │ │
+│ │ Phase 2: Database Intelligence (Week 2)                                                  │ │
+│ │                                                                                          │ │
+│ │ Understand shared Supabase relationships                                                 │ │
+│ │                                                                                          │ │
+│ │ Tasks:                                                                                   │ │
+│ │ 1. Add database schema types                                                             │ │
+│ │   - DatabaseIntelligence struct                                                          │ │
+│ │   - TableInfo with columns/relationships                                                 │ │
+│ │   - ServiceOwnership mapping                                                             │ │
+│ │ 2. Create schema analyzer                                                                │ │
+│ │   - Connect to Supabase (read-only)                                                      │ │
+│ │   - Map tables to services based on naming patterns                                      │ │
+│ │   - Detect foreign key relationships                                                     │ │
+│ │ 3. New API endpoints                                                                     │ │
+│ │   - GET /api/database/schema - Full schema                                               │ │
+│ │   - GET /api/database/relationships - Table relationships                                │ │
+│ │   - GET /api/services/{id}/tables - Tables per service                                   │ │
+│ │ 4. Extend dashboard                                                                      │ │
+│ │   - Database section showing shared tables                                               │ │
+│ │   - Service-to-table ownership mapping                                                   │ │
+│ │                                                                                          │ │
+│ │ Phase 3: Snapshot System (Week 3)                                                        │ │
+│ │                                                                                          │ │
+│ │ Enable human-AI collaboration through saved states                                       │ │
+│ │                                                                                          │ │
+│ │ Tasks:                                                                                   │ │
+│ │ 1. Add snapshot types                                                                    │ │
+│ │   - VisualSnapshot with metadata                                                         │ │
+│ │   - SnapshotState for UI state                                                           │ │
+│ │   - Annotation system                                                                    │ │
+│ │ 2. Create snapshot manager                                                               │ │
+│ │   - Save/load exploration states                                                         │ │
+│ │   - Support both human and AI snapshots                                                  │ │
+│ │   - Comparison functionality                                                             │ │
+│ │ 3. Snapshot API endpoints                                                                │ │
+│ │   - POST /api/snapshots - Create snapshot                                                │ │
+│ │   - GET /api/snapshots/{id} - Load snapshot                                              │ │
+│ │   - POST /api/snapshots/compare - Compare two snapshots                                  │ │
+│ │ 4. Add to dashboard                                                                      │ │
+│ │   - "Save Current State" button                                                          │ │
+│ │   - Snapshot history list                                                                │ │
+│ │   - Load previous explorations                                                           │ │
+│ │                                                                                          │ │
+│ │ Phase 4: Mind-Map Interface (Week 4-5)                                                   │ │
+│ │                                                                                          │ │
+│ │ Visual service topology with dual-layer interface                                        │ │
+│ │                                                                                          │ │
+│ │ Tasks:                                                                                   │ │
+│ │ 1. Create new mindmap.html                                                               │ │
+│ │   - Interactive node/edge visualization using D3.js                                      │ │
+│ │   - Drag-drop nodes representing services                                                │ │
+│ │   - Click-through navigation                                                             │ │
+│ │ 2. Add mind-map backend                                                                  │ │
+│ │   - WebSocket endpoint /ws/mindmap                                                       │ │
+│ │   - Real-time sync of node positions                                                     │ │
+│ │   - State persistence                                                                    │ │
+│ │ 3. Implement dual-layer view                                                             │ │
+│ │   - Human exploration layer (full permissions)                                           │ │
+│ │   - AI investigation layer (read-only for humans)                                        │ │
+│ │   - Layer toggle controls                                                                │ │
+│ │ 4. New WebSocket messages                                                                │ │
+│ │   - mindmap_update - Node position changes                                               │ │
+│ │   - annotation_added - User/AI annotations                                               │ │
+│ │   - path_highlighted - Service relationship traces                                       │ │
+│ │                                                                                          │ │
+│ │ Phase 5: AI Integration Protocol (Week 6)                                                │ │
+│ │                                                                                          │ │
+│ │ Enable Claude Code to communicate with Argus                                             │ │
+│ │                                                                                          │ │
+│ │ Tasks:                                                                                   │ │
+│ │ 1. Add AI communication types                                                            │ │
+│ │   - AIMessage with intent/investigation/snapshot types                                   │ │
+│ │   - AIIntent for announcing actions                                                      │ │
+│ │   - AIInvestigation for exploration tracking                                             │ │
+│ │ 2. Create AI protocol handlers                                                           │ │
+│ │   - /api/ai/intent - Claude announces what it's doing                                    │ │
+│ │   - /api/ai/investigation - Save AI exploration state                                    │ │
+│ │   - /api/human/flag - Human interrupts AI process                                        │ │
+│ │ 3. Extend claude-query.sh                                                                │ │
+│ │   - ai-intent "debugging auth" --risk medium --targets auth,database                     │ │
+│ │   - snapshot save "payment-flow-investigation" --type ai                                 │ │
+│ │   - flag-concern "Redis connection looks unstable"                                       │ │
+│ │ 4. Add to mind-map interface                                                             │ │
+│ │   - AI activity indicator                                                                │ │
+│ │   - Real-time AI investigation traces                                                    │ │
+│ │   - Human override controls                                                              │ │
+│ │                                                                                          │ │
+│ │ Phase 6: Advanced Intelligence (Week 7-8)                                                │ │
+│ │                                                                                          │ │
+│ │ Cross-service analysis and change impact                                                 │ │
+│ │                                                                                          │ │
+│ │ Tasks:                                                                                   │ │
+│ │ 1. Add impact analysis                                                                   │ │
+│ │   - ChangeImpactAnalyzer struct                                                          │ │
+│ │   - Cross-service dependency tracking                                                    │ │
+│ │   - Risk assessment for changes                                                          │ │
+│ │ 2. Integration pathway suggestions                                                       │ │
+│ │   - Analyze how services could connect                                                   │ │
+│ │   - Suggest API integration points                                                       │ │
+│ │   - Database sharing recommendations                                                     │ │
+│ │ 3. Enhanced monitoring                                                                   │ │
+│ │   - Track cross-service API calls                                                        │ │
+│ │   - Monitor database queries across services                                             │ │
+│ │   - Performance impact measurement                                                       │ │
+│ │ 4. Complete dashboard                                                                    │ │
+│ │   - Integration recommendations panel                                                    │ │
+│ │   - Change impact warnings                                                               │ │
+│ │   - Performance metrics across services                                                  │ │
+│ │                                                                                          │ │
+│ │ 🛠️ Technical Implementation Details                                                      │ │
+│ │                                                                                          │ │
+│ │ Key File Modifications:                                                                  │ │
+│ │                                                                                          │ │
+│ │ 1. main.go - Add ~1000 lines for new structs and handlers                                │ │
+│ │ 2. dashboard.html - Add services section and snapshot controls                           │ │
+│ │ 3. claude-query.sh - Add AI collaboration commands                                       │ │
+│ │ 4. New files:                                                                            │ │
+│ │   - mindmap.html - Interactive visualization                                             │ │
+│ │   - service_discovery.go - Service detection logic                                       │ │
+│ │   - database_intelligence.go - Schema analysis                                           │ │
+│ │   - snapshot_manager.go - State management                                               │ │
+│ │                                                                                          │ │
+│ │ Database Integration:                                                                    │ │
+│ │                                                                                          │ │
+│ │ - Read-only Supabase connection via environment variables                                │ │
+│ │ - No schema modifications required                                                       │ │
+│ │ - Pure analysis and relationship mapping                                                 │ │
+│ │                                                                                          │ │
+│ │ Backwards Compatibility:                                                                 │ │
+│ │                                                                                          │ │
+│ │ - All existing APIs remain unchanged                                                     │ │
+│ │ - Current dashboard and CLI continue working                                             │ │
+│ │ - New features are additive only                                                         │ │
+│ │                                                                                          │ │
+│ │ 🎯 Success Metrics                                                                       │ │
+│ │                                                                                          │ │
+│ │ Week 4 Milestone: Mind-map shows all HIVE services with basic relationships              │ │
+│ │ Week 6 Milestone: Claude Code can announce intentions and save investigation statesWeek  │ │
+│ │ 8 Milestone: Complete system provides integration pathway suggestions                    │ │
+│ │                                                                                          │ │
+│ │ 🚀 Implementation Approach                                                               │ │
+│ │                                                                                          │ │
+│ │ Each phase builds incrementally on the previous one, with working features at every      │ │
+│ │ step. The system remains fully functional throughout development, with new capabilities  │ │
+│ │ added as enhancements rather than replacements.                                          │ │
+│ │                                                                                          │ │
+│ │ This plan transforms Argus from a single-project monitor into a multi-service            │ │
+│ │ intelligence companion while maintaining all existing functionality.      

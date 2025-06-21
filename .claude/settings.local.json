@@ -15,7 +15,16 @@
       "Bash(rm:*)",
       "Bash(touch:*)",
       "Bash(git push:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(sudo chown:*)",
+      "Bash(./claude-query-enhanced.sh:*)",
+      "Bash(bash:*)",
+      "Bash(dos2unix:*)",
+      "Bash(sed:*)",
+      "Bash(pkill:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)"
     ],
     "deny": []
   }

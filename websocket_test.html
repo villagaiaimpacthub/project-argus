@@ -47,6 +47,607 @@
             color: #a8a8a8;
         }
         
+        .workspace-info {
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: rgba(0,245,255,0.08);
+            border: 1px solid rgba(0,245,255,0.2);
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .workspace-path {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .workspace-label {
+            font-size: 0.9em;
+            color: #00f5ff;
+            font-weight: 500;
+            min-width: 80px;
+        }
+        
+        .workspace-value {
+            font-size: 0.9em;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            title: "Click to copy path";
+        }
+        
+        .workspace-value:hover {
+            background: rgba(0,245,255,0.1);
+            border-color: rgba(0,245,255,0.3);
+        }
+        
+        .workspace-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .project-type {
+            font-size: 0.8em;
+            color: #8b5cf6;
+            font-weight: 500;
+            background: rgba(139,92,246,0.1);
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(139,92,246,0.3);
+        }
+        
+        .change-workspace-btn {
+            background: rgba(0,245,255,0.1);
+            border: 1px solid rgba(0,245,255,0.3);
+            color: #00f5ff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        
+        .change-workspace-btn:hover {
+            background: rgba(0,245,255,0.2);
+            border-color: rgba(0,245,255,0.5);
+            transform: translateY(-1px);
+        }
+        
+        /* Modal Styles */
+        .workspace-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid rgba(0,245,255,0.3);
+            border-radius: 16px;
+            padding: 0;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow: hidden;
+            animation: slideInUp 0.3s ease;
+        }
+        
+        .modal-header {
+            background: linear-gradient(90deg, rgba(0,245,255,0.1), rgba(139,92,246,0.1));
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .modal-header h3 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 1.2em;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: #ff4757;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255,71,87,0.1);
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .modal-body p {
+            color: #a8a8a8;
+            margin-bottom: 15px;
+        }
+        
+        .directory-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .directory-input {
+            flex: 1;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            padding: 10px 12px;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .directory-input:focus {
+            outline: none;
+            border-color: rgba(0,245,255,0.5);
+            box-shadow: 0 0 0 2px rgba(0,245,255,0.1);
+        }
+        
+        .browse-btn {
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.3);
+            color: #8b5cf6;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .browse-btn:hover {
+            background: rgba(139,92,246,0.2);
+            border-color: rgba(139,92,246,0.5);
+        }
+        
+        .directory-browser {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 90vw !important;
+            max-width: 800px !important;
+            height: 70vh !important;
+            max-height: 600px !important;
+            background: rgba(0,0,0,0.95) !important;
+            backdrop-filter: blur(20px) !important;
+            border-radius: 12px !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5) !important;
+            overflow: hidden !important;
+            flex-direction: column !important;
+            z-index: 2147483647 !important;
+            isolation: isolate !important;
+            contain: layout style paint !important;
+            pointer-events: auto !important;
+        }
+        
+        .directory-browser[style*="display: none"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        .directory-browser[style*="display: block"] {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        
+        .browser-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            min-height: 40px;
+            position: relative;
+            z-index: 2147483647 !important;
+        }
+        
+        .breadcrumb-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        .drives-btn, .refresh-btn {
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.3);
+            color: #8b5cf6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .drives-btn:hover, .refresh-btn:hover {
+            background: rgba(139,92,246,0.2);
+            border-color: rgba(139,92,246,0.5);
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8em;
+        }
+        
+        .breadcrumb-item {
+            color: #00f5ff;
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 3px;
+            transition: background 0.2s ease;
+        }
+        
+        .breadcrumb-item:hover {
+            background: rgba(0,245,255,0.1);
+        }
+        
+        .breadcrumb-item:not(:last-child)::after {
+            content: " › ";
+            color: #a8a8a8;
+            margin-left: 4px;
+        }
+        
+        .browser-sidebar {
+            width: 160px;
+            background: rgba(255,255,255,0.02);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 0;
+            overflow-y: auto;
+        }
+        
+        .browser-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-title {
+            padding: 8px 12px 4px;
+            font-size: 0.7em;
+            font-weight: 600;
+            color: #a8a8a8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .quick-item, .drive-item {
+            padding: 6px 12px;
+            font-size: 0.8em;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .quick-item:hover, .drive-item:hover {
+            background: rgba(0,245,255,0.1);
+            border-left-color: #00f5ff;
+        }
+        
+        .quick-item.active, .drive-item.active {
+            background: rgba(0,245,255,0.15);
+            border-left-color: #00f5ff;
+        }
+        
+        .drives-section {
+            margin-top: 15px;
+        }
+        
+        .browser-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .browser-content::-webkit-scrollbar { width: 4px; }
+        .browser-content::-webkit-scrollbar-track { background: transparent; }
+        .browser-content::-webkit-scrollbar-thumb { background: rgba(0,245,255,0.3); border-radius: 2px; }
+        
+        .browser-sidebar::-webkit-scrollbar { width: 3px; }
+        .browser-sidebar::-webkit-scrollbar-track { background: transparent; }
+        .browser-sidebar::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 2px; }
+        
+        .browser-backdrop {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: rgba(0,0,0,0.7) !important;
+            backdrop-filter: blur(5px) !important;
+            z-index: 2147483646 !important;
+            pointer-events: auto !important;
+            isolation: isolate !important;
+        }
+        
+        .browser-backdrop[style*="display: none"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        .browser-backdrop[style*="display: block"] {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        
+        .browser-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .close-btn {
+            background: rgba(220,38,127,0.1);
+            border: 1px solid rgba(220,38,127,0.3);
+            color: #dc267f;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            background: rgba(220,38,127,0.2);
+            border-color: rgba(220,38,127,0.5);
+        }
+        
+        .browser-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            z-index: 2147483647 !important;
+        }
+        
+        .directory-item {
+            display: grid;
+            grid-template-columns: 30px 1fr auto;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            min-height: 40px;
+        }
+        
+        .directory-item:hover {
+            background: rgba(0,245,255,0.05);
+            border-color: rgba(0,245,255,0.2);
+        }
+        
+        .directory-item.selected {
+            background: rgba(0,245,255,0.15);
+            border-color: rgba(0,245,255,0.5);
+        }
+        
+        .dir-icon {
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        .dir-name {
+            font-size: 0.85em;
+            color: #ffffff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .dir-info {
+            font-size: 0.7em;
+            color: #a8a8a8;
+            white-space: nowrap;
+        }
+        
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+        }
+        
+        .folder-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .folder-card:hover {
+            background: rgba(0,245,255,0.08);
+            border-color: rgba(0,245,255,0.3);
+            transform: translateY(-1px);
+        }
+        
+        .folder-card.selected {
+            background: rgba(0,245,255,0.15);
+            border-color: rgba(0,245,255,0.5);
+        }
+        
+        .loading-dirs {
+            text-align: center;
+            padding: 40px 20px;
+            color: #a8a8a8;
+            font-style: italic;
+        }
+        
+        .browser-actions {
+            padding: 12px 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            z-index: 2147483647 !important;
+        }
+        
+        .selected-path {
+            font-size: 0.75em;
+            color: #a8a8a8;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .select-btn {
+            background: linear-gradient(45deg, rgba(0,245,255,0.2), rgba(139,92,246,0.2));
+            border: 1px solid rgba(0,245,255,0.5);
+            color: #00f5ff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .select-btn:hover:not(:disabled) {
+            background: linear-gradient(45deg, rgba(0,245,255,0.3), rgba(139,92,246,0.3));
+            transform: translateY(-1px);
+        }
+        
+        .select-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        
+        .modal-btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid;
+        }
+        
+        .modal-btn.secondary {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.2);
+            color: #a8a8a8;
+        }
+        
+        .modal-btn.secondary:hover {
+            background: rgba(255,255,255,0.1);
+            color: #ffffff;
+        }
+        
+        .modal-btn.primary {
+            background: linear-gradient(45deg, rgba(0,245,255,0.2), rgba(139,92,246,0.2));
+            border-color: rgba(0,245,255,0.5);
+            color: #00f5ff;
+        }
+        
+        .modal-btn.primary:hover {
+            background: linear-gradient(45deg, rgba(0,245,255,0.3), rgba(139,92,246,0.3));
+            transform: translateY(-1px);
+        }
+        
+        .modal-btn.restart {
+            background: linear-gradient(45deg, rgba(255,107,107,0.1), rgba(255,159,28,0.1));
+            border: 1px solid rgba(255,107,107,0.3);
+            color: #ff6b6b;
+        }
+        
+        .modal-btn.restart:hover {
+            background: linear-gradient(45deg, rgba(255,107,107,0.2), rgba(255,159,28,0.2));
+            border-color: rgba(255,107,107,0.5);
+            transform: translateY(-1px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* Main Stream Window */
         .stream-window {
             background: rgba(0,0,0,0.6);
@@ -64,6 +665,54 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+        
+        .stream-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .stream-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .stream-btn {
+            padding: 6px 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+            color: #ffffff;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+        }
+        
+        .stream-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+        
+        .copy-btn:hover {
+            background: linear-gradient(45deg, rgba(0,245,255,0.2), rgba(139,92,246,0.2));
+            border-color: rgba(0,245,255,0.5);
+        }
+        
+        .export-btn:hover {
+            background: linear-gradient(45deg, rgba(46,213,115,0.2), rgba(0,206,201,0.2));
+            border-color: rgba(46,213,115,0.5);
+        }
+        
+        .clear-btn:hover {
+            background: linear-gradient(45deg, rgba(255,107,107,0.2), rgba(255,159,28,0.2));
+            border-color: rgba(255,107,107,0.5);
         }
         
         .stream-title {
@@ -380,6 +1029,41 @@
         <div class="header">
             <h1>🚀 Claude Code - Live Monitoring</h1>
             <p>Real-time WebSocket stream monitoring made simple</p>
+            <div class="workspace-info">
+                <div class="workspace-path">
+                    <span class="workspace-label">📁 Monitoring:</span>
+                    <span id="workspacePath" class="workspace-value">Loading workspace...</span>
+                    <button id="changeWorkspaceBtn" class="change-workspace-btn" onclick="showWorkspaceChanger()">📝 Change</button>
+                </div>
+                <div class="workspace-details">
+                    <span id="projectType" class="project-type">Detecting project type...</span>
+                </div>
+            </div>
+            
+            <!-- Workspace Changer Modal -->
+            <div id="workspaceModal" class="workspace-modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>🎯 Change Monitoring Directory</h3>
+                        <button class="modal-close" onclick="hideWorkspaceChanger()">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Enter the directory path you want to monitor:</p>
+                        <div class="directory-input-group">
+                            <input type="text" id="newWorkspacePath" class="directory-input" 
+                                   placeholder="/path/to/your/project" 
+                                   value="">
+                            <button class="browse-btn" onclick="showDirectoryBrowser()">📁 Browse</button>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="modal-btn secondary" onclick="hideWorkspaceChanger()">Cancel</button>
+                            <button class="modal-btn primary" onclick="changeWorkspace()">🔄 Switch Monitoring</button>
+                            <button class="modal-btn restart" onclick="restartServerWithNewWorkspace()">🚀 Restart Server</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Main Live Stream Window -->
@@ -388,11 +1072,24 @@
                 <div class="stream-title">
                     📡 Live Stream Monitor
                 </div>
-                <div class="connection-status">
-                    <span>Error Stream</span>
-                    <div class="status-dot" id="errorDot"></div>
-                    <span>Process Stream</span>
-                    <div class="status-dot" id="processDot"></div>
+                <div class="stream-controls">
+                    <div class="connection-status">
+                        <span>Error Stream</span>
+                        <div class="status-dot" id="errorDot"></div>
+                        <span>Process Stream</span>
+                        <div class="status-dot" id="processDot"></div>
+                    </div>
+                    <div class="stream-actions">
+                        <button class="stream-btn copy-btn" onclick="copyAllLogs()" title="Copy all logs to clipboard">
+                            📋 Copy
+                        </button>
+                        <button class="stream-btn export-btn" onclick="exportLogs()" title="Export logs as text file">
+                            💾 Export
+                        </button>
+                        <button class="stream-btn clear-btn" onclick="clearLogs()" title="Clear log display">
+                            🗑️ Clear
+                        </button>
+                    </div>
                 </div>
             </div>
             <div id="messageLog" class="log"></div>
@@ -451,7 +1148,7 @@
         <div class="quick-actions">
             <button class="action-btn" onclick="checkServerStatus()">🔍 Check Server</button>
             <button class="action-btn" onclick="checkAvailableEndpoints()">🔧 Check Endpoints</button>
-            <button class="action-btn" onclick="clearLogs()">🗑️ Clear Logs</button>
+            <button class="action-btn" onclick="clearLogs()">🗑️ Clear</button>
             <button class="action-btn" onclick="runProductionTests()">🛡️ Run Tests</button>
             <button class="action-btn danger" onclick="disconnectAll()">🔴 Disconnect All</button>
         </div>
@@ -990,6 +1687,170 @@
             document.getElementById('messageLog').innerHTML = '';
             messageCount = 0;
             updateMetrics();
+            log('🗑️ Log display cleared', 'info');
+        }
+        
+        // Copy all logs to clipboard
+        async function copyAllLogs() {
+            const logElement = document.getElementById('messageLog');
+            const logEntries = logElement.querySelectorAll('.log-entry');
+            
+            if (logEntries.length === 0) {
+                log('📋 No logs to copy', 'warning');
+                return;
+            }
+            
+            // Extract text content from all log entries
+            const logText = Array.from(logEntries).map(entry => entry.textContent).join('\n');
+            
+            try {
+                await navigator.clipboard.writeText(logText);
+                log(`📋 Copied ${logEntries.length} log entries to clipboard!`, 'success');
+                
+                // Show brief confirmation
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalText = copyBtn.textContent;
+                copyBtn.textContent = '✅ Copied!';
+                copyBtn.style.background = 'linear-gradient(45deg, rgba(0,255,136,0.2), rgba(6,255,165,0.2))';
+                
+                setTimeout(() => {
+                    copyBtn.textContent = originalText;
+                    copyBtn.style.background = '';
+                }, 2000);
+                
+            } catch (error) {
+                log(`❌ Failed to copy logs: ${error.message}`, 'error');
+                
+                // Fallback: show logs in a modal for manual copy
+                showLogsModal(logText);
+            }
+        }
+        
+        // Export logs as downloadable text file
+        function exportLogs() {
+            const logElement = document.getElementById('messageLog');
+            const logEntries = logElement.querySelectorAll('.log-entry');
+            
+            if (logEntries.length === 0) {
+                log('💾 No logs to export', 'warning');
+                return;
+            }
+            
+            // Create export content with metadata
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const logText = Array.from(logEntries).map(entry => entry.textContent).join('\n');
+            
+            const exportContent = `Project Argus Live Stream Monitor - Debug Log Export
+Generated: ${new Date().toLocaleString()}
+Total Entries: ${logEntries.length}
+Session Uptime: ${document.getElementById('uptime')?.textContent || 'Unknown'}
+Reconnect Count: ${document.getElementById('reconnectCount')?.textContent || '0'}
+
+${'='.repeat(80)}
+
+${logText}
+
+${'='.repeat(80)}
+End of Log Export
+`;
+            
+            // Create and download file
+            const blob = new Blob([exportContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `argus-logs-${timestamp}.txt`;
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            log(`💾 Exported ${logEntries.length} log entries to file: argus-logs-${timestamp}.txt`, 'success');
+            
+            // Show brief confirmation
+            const exportBtn = document.querySelector('.export-btn');
+            const originalText = exportBtn.textContent;
+            exportBtn.textContent = '✅ Exported!';
+            exportBtn.style.background = 'linear-gradient(45deg, rgba(46,213,115,0.2), rgba(0,206,201,0.2))';
+            
+            setTimeout(() => {
+                exportBtn.textContent = originalText;
+                exportBtn.style.background = '';
+            }, 2000);
+        }
+        
+        // Show logs in modal for manual copy (fallback)
+        function showLogsModal(logText) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+            `;
+            
+            const content = document.createElement('div');
+            content.style.cssText = `
+                background: rgba(20,20,30,0.95);
+                border: 1px solid rgba(255,255,255,0.2);
+                border-radius: 12px;
+                padding: 20px;
+                max-width: 80%;
+                max-height: 80%;
+                overflow: hidden;
+                backdrop-filter: blur(20px);
+            `;
+            
+            content.innerHTML = `
+                <h3 style="color: #ffffff; margin-top: 0;">📋 Copy Debug Logs</h3>
+                <p style="color: #cccccc; font-size: 14px;">Clipboard access failed. Please manually copy the logs below:</p>
+                <textarea readonly style="
+                    width: 100%;
+                    height: 300px;
+                    background: rgba(0,0,0,0.5);
+                    border: 1px solid rgba(255,255,255,0.1);
+                    border-radius: 6px;
+                    padding: 10px;
+                    color: #ffffff;
+                    font-family: 'Courier New', monospace;
+                    font-size: 12px;
+                    resize: none;
+                ">${logText}</textarea>
+                <div style="margin-top: 15px; text-align: right;">
+                    <button onclick="this.closest('.modal').remove()" style="
+                        background: rgba(255,255,255,0.1);
+                        border: 1px solid rgba(255,255,255,0.2);
+                        color: #ffffff;
+                        padding: 8px 16px;
+                        border-radius: 6px;
+                        cursor: pointer;
+                    ">Close</button>
+                </div>
+            `;
+            
+            modal.appendChild(content);
+            modal.className = 'modal';
+            document.body.appendChild(modal);
+            
+            // Auto-select all text
+            const textarea = content.querySelector('textarea');
+            textarea.select();
+            textarea.focus();
+            
+            // Close on backdrop click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
         }
 
         // Production readiness tests
@@ -1293,10 +2154,75 @@
             }, 5000); // Check every 5 seconds
         }
 
+        // Load workspace information
+        async function loadWorkspaceInfo() {
+            try {
+                log('📁 Loading workspace information...', 'info');
+                
+                // First try to get basic workspace info
+                const statusResponse = await fetch('http://localhost:3002/');
+                if (!statusResponse.ok) {
+                    throw new Error(`HTTP ${statusResponse.status}`);
+                }
+                
+                const statusData = await statusResponse.json();
+                let workspacePath = statusData.workspace || 'Unknown workspace';
+                let projectType = 'Unknown';
+                
+                // Try to get detailed project structure for project type
+                try {
+                    const structureResponse = await fetch('http://localhost:3002/structure');
+                    if (structureResponse.ok) {
+                        const structureData = await structureResponse.json();
+                        if (structureData.project_type) {
+                            projectType = structureData.project_type;
+                        }
+                        if (structureData.root_path) {
+                            workspacePath = structureData.root_path;
+                        }
+                    }
+                } catch (structError) {
+                    log('⚠️ Could not load detailed project structure', 'warning');
+                }
+                
+                // Update UI elements
+                const workspaceElement = document.getElementById('workspacePath');
+                workspaceElement.textContent = workspacePath;
+                workspaceElement.title = `Click to copy: ${workspacePath}`;
+                
+                // Add click-to-copy functionality
+                workspaceElement.onclick = function() {
+                    navigator.clipboard.writeText(workspacePath).then(() => {
+                        log(`📋 Workspace path copied to clipboard: ${workspacePath}`, 'success');
+                        // Brief visual feedback
+                        workspaceElement.style.background = 'rgba(0,255,136,0.3)';
+                        setTimeout(() => {
+                            workspaceElement.style.background = 'rgba(0,0,0,0.3)';
+                        }, 300);
+                    }).catch(() => {
+                        log(`❌ Failed to copy workspace path to clipboard`, 'error');
+                    });
+                };
+                
+                document.getElementById('projectType').textContent = `📦 ${projectType} Project`;
+                
+                log(`✅ Workspace loaded: ${workspacePath}`, 'success');
+                log(`📦 Project type: ${projectType}`, 'info');
+                
+            } catch (error) {
+                log(`❌ Failed to load workspace info: ${error.message}`, 'error');
+                document.getElementById('workspacePath').textContent = 'Server not responding';
+                document.getElementById('projectType').textContent = '📦 Connection Error';
+            }
+        }
+
         // Auto-run production tests on load
         document.addEventListener('DOMContentLoaded', function() {
             log('🚀 Claude Code Live Monitoring Started', 'success');
             log('Follow the simple 1-2-3-4 workflow below to get started', 'info');
+            
+            // Load workspace information first
+            loadWorkspaceInfo();
             
             // Initialize debug information
             initializeDebugInfo();
@@ -1331,6 +2257,552 @@
                 processWs.send(JSON.stringify({type: 'ping'}));
             }
         }, 30000); // Ping every 30 seconds
+        
+        // Workspace Changer Functions
+        function showWorkspaceChanger() {
+            const modal = document.getElementById('workspaceModal');
+            const input = document.getElementById('newWorkspacePath');
+            
+            // Pre-fill with current workspace path
+            const currentPath = document.getElementById('workspacePath').textContent;
+            if (currentPath && currentPath !== 'Loading workspace...' && currentPath !== 'Server not responding') {
+                input.value = currentPath;
+            }
+            
+            modal.style.display = 'flex';
+            input.focus();
+            
+            log('📝 Workspace changer opened', 'info');
+        }
+        
+        function hideWorkspaceChanger() {
+            document.getElementById('workspaceModal').style.display = 'none';
+            // Always close browser when hiding workspace changer
+            closeBrowser();
+            log('📝 Workspace changer closed', 'info');
+        }
+        
+        // Directory Browser Variables
+        let currentBrowserPath = '';
+        let selectedDirectoryPath = '';
+        let breadcrumbPath = [];
+        
+        function showDirectoryBrowser() {
+            const browser = document.getElementById('directoryBrowser');
+            const backdrop = document.getElementById('browserBackdrop');
+            
+            // Always ensure it's hidden first, then show
+            backdrop.style.display = 'none';
+            browser.style.display = 'none';
+            
+            // Small delay to ensure proper state reset
+            setTimeout(() => {
+                backdrop.style.display = 'block';
+                browser.style.display = 'block';
+                showDrives();
+                // Prevent body scroll when modal is open
+                document.body.style.overflow = 'hidden';
+                log('📁 Directory browser opened', 'info');
+            }, 10);
+        }
+        
+        function closeBrowser() {
+            const browser = document.getElementById('directoryBrowser');
+            const backdrop = document.getElementById('browserBackdrop');
+            
+            backdrop.style.display = 'none';
+            browser.style.display = 'none';
+            // Restore body scroll
+            document.body.style.overflow = 'auto';
+            log('📁 Directory browser closed', 'info');
+        }
+        
+        function showDrives() {
+            const content = document.getElementById('browserContent');
+            const breadcrumb = document.getElementById('breadcrumb');
+            const selectBtn = document.getElementById('selectBtn');
+            const pathDisplay = document.getElementById('selectedPathDisplay');
+            
+            // Reset state
+            currentBrowserPath = '';
+            selectedDirectoryPath = '';
+            breadcrumbPath = [];
+            
+            // Update UI
+            breadcrumb.innerHTML = '<span class="breadcrumb-item active">This PC</span>';
+            pathDisplay.textContent = 'No folder selected';
+            selectBtn.disabled = true;
+            
+            // Clear sidebar selections
+            document.querySelectorAll('.quick-item, .drive-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show drives
+            content.innerHTML = `
+                <div class="folder-grid">
+                    <div class="folder-card" onclick="navigateToDrive('C:')">
+                        <div class="dir-icon">💿</div>
+                        <div>
+                            <div class="dir-name">Local Disk (C:)</div>
+                            <div class="dir-info">Windows System Drive</div>
+                        </div>
+                    </div>
+                    <div class="folder-card" onclick="navigateToDrive('D:')">
+                        <div class="dir-icon">💾</div>
+                        <div>
+                            <div class="dir-name">Data Drive (D:)</div>
+                            <div class="dir-info">Additional Storage</div>
+                        </div>
+                    </div>
+                    <div class="folder-card" onclick="navigateToDrive('WSL')">
+                        <div class="dir-icon">🐧</div>
+                        <div>
+                            <div class="dir-name">WSL Linux</div>
+                            <div class="dir-info">Windows Subsystem for Linux</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            log('💾 Showing available drives', 'info');
+        }
+        
+        function navigateToDrive(drive) {
+            // Clear sidebar selections
+            document.querySelectorAll('.quick-item, .drive-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Highlight selected drive in sidebar
+            document.querySelectorAll('.drive-item').forEach(item => {
+                if (item.textContent.includes(drive)) {
+                    item.classList.add('active');
+                }
+            });
+            
+            let path;
+            switch(drive) {
+                case 'C:':
+                    path = '/mnt/c';
+                    break;
+                case 'D:':
+                    path = '/mnt/d';
+                    break;
+                case 'WSL':
+                    path = '/home';
+                    break;
+                default:
+                    path = '/mnt/c';
+            }
+            
+            loadDirectoryListing(path, drive);
+        }
+        
+        function navigateToQuick(location) {
+            // Clear selections
+            document.querySelectorAll('.quick-item, .drive-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Highlight selected quick access
+            document.querySelectorAll('.quick-item').forEach(item => {
+                if (item.textContent.includes(location)) {
+                    item.classList.add('active');
+                }
+            });
+            
+            let path;
+            switch(location) {
+                case 'Desktop':
+                    path = '/mnt/c/Users/You/Desktop';
+                    break;
+                case 'Documents':
+                    path = '/mnt/c/Users/You/Documents';
+                    break;
+                case 'Downloads':
+                    path = '/mnt/c/Users/You/Downloads';
+                    break;
+                case 'Projects':
+                    path = '/mnt/c/Users/You/Projects';
+                    break;
+                default:
+                    path = '/mnt/c/Users/You/' + location;
+            }
+            
+            loadDirectoryListing(path, 'C:', ['Users', 'You', location]);
+        }
+        
+        async function loadDirectoryListing(path, drive = '', pathArray = []) {
+            const content = document.getElementById('browserContent');
+            const breadcrumb = document.getElementById('breadcrumb');
+            const selectBtn = document.getElementById('selectBtn');
+            const pathDisplay = document.getElementById('selectedPathDisplay');
+            
+            // Update state
+            currentBrowserPath = path;
+            selectedDirectoryPath = path;
+            
+            // Build breadcrumb
+            let breadcrumbHtml = '<span class="breadcrumb-item" onclick="showDrives()">This PC</span>';
+            if (drive) {
+                breadcrumbHtml += `<span class="breadcrumb-item" onclick="navigateToDrive('${drive}')">${drive}</span>`;
+                pathArray.forEach((folder, index) => {
+                    const partialPath = path.split('/').slice(0, index + 3).join('/');
+                    breadcrumbHtml += `<span class="breadcrumb-item" onclick="navigateToPath('${partialPath}')">${folder}</span>`;
+                });
+            }
+            breadcrumb.innerHTML = breadcrumbHtml;
+            
+            // Update selected path
+            pathDisplay.textContent = path;
+            selectBtn.disabled = false;
+            
+            // Show loading
+            content.innerHTML = '<div class="loading-dirs">📁 Loading directories...</div>';
+            
+            try {
+                const directories = await getDirectoriesForPath(path);
+                
+                if (directories.length === 0) {
+                    content.innerHTML = '<div class="loading-dirs">📁 This folder is empty or contains no subfolders</div>';
+                    return;
+                }
+                
+                // Render as folder grid
+                content.innerHTML = `
+                    <div class="folder-grid">
+                        ${directories.map(dir => `
+                            <div class="folder-card" onclick="navigateToPath('${dir.path.replace(/'/g, "\\'")}')">
+                                <div class="dir-icon">${dir.icon}</div>
+                                <div>
+                                    <div class="dir-name">${dir.name}</div>
+                                    <div class="dir-info">${dir.info}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                log(`📁 Loaded ${directories.length} folders from ${path}`, 'info');
+                
+            } catch (error) {
+                content.innerHTML = '<div class="loading-dirs">❌ Error loading directories</div>';
+                log(`❌ Failed to load directory listing: ${error.message}`, 'error');
+            }
+        }
+        
+        function navigateToPath(path) {
+            // Determine drive and build path array
+            let drive = '';
+            let pathArray = [];
+            
+            if (path.startsWith('/mnt/c')) {
+                drive = 'C:';
+                pathArray = path.replace('/mnt/c/', '').split('/').filter(p => p);
+            } else if (path.startsWith('/mnt/d')) {
+                drive = 'D:';
+                pathArray = path.replace('/mnt/d/', '').split('/').filter(p => p);
+            } else if (path.startsWith('/home')) {
+                drive = 'WSL';
+                pathArray = path.replace('/home/', '').split('/').filter(p => p);
+            }
+            
+            loadDirectoryListing(path, drive, pathArray);
+        }
+        
+        async function getDirectoriesForPath(path) {
+            // Enhanced directory structure
+            const directoryMap = {
+                '/mnt/c': [
+                    { name: 'Users', path: '/mnt/c/Users', icon: '👥', info: 'User accounts' },
+                    { name: 'Program Files', path: '/mnt/c/Program Files', icon: '⚙️', info: 'Installed programs' },
+                    { name: 'Program Files (x86)', path: '/mnt/c/Program Files (x86)', icon: '⚙️', info: '32-bit programs' },
+                    { name: 'Windows', path: '/mnt/c/Windows', icon: '🪟', info: 'System files' },
+                    { name: 'Go Fiber Router Backend', path: '/mnt/c/Go Fiber Router Backend', icon: '🚀', info: 'Current project' }
+                ],
+                '/mnt/c/Users': [
+                    { name: 'You', path: '/mnt/c/Users/You', icon: '👤', info: 'Your user profile' },
+                    { name: 'Public', path: '/mnt/c/Users/Public', icon: '🌐', info: 'Shared files' }
+                ],
+                '/mnt/c/Users/You': [
+                    { name: 'Desktop', path: '/mnt/c/Users/You/Desktop', icon: '🖥️', info: 'Desktop items' },
+                    { name: 'Documents', path: '/mnt/c/Users/You/Documents', icon: '📄', info: 'Personal documents' },
+                    { name: 'Downloads', path: '/mnt/c/Users/You/Downloads', icon: '⬇️', info: 'Downloaded files' },
+                    { name: 'Pictures', path: '/mnt/c/Users/You/Pictures', icon: '🖼️', info: 'Images and photos' },
+                    { name: 'Videos', path: '/mnt/c/Users/You/Videos', icon: '🎬', info: 'Video files' },
+                    { name: 'Projects', path: '/mnt/c/Users/You/Projects', icon: '💼', info: 'Development projects' }
+                ],
+                '/mnt/c/Users/You/Projects': [
+                    { name: 'task-dashboard', path: '/mnt/c/Users/You/Projects/task-dashboard', icon: '📊', info: 'Task management dashboard' },
+                    { name: 'react-app', path: '/mnt/c/Users/You/Projects/react-app', icon: '⚛️', info: 'React application' },
+                    { name: 'node-backend', path: '/mnt/c/Users/You/Projects/node-backend', icon: '🟢', info: 'Node.js backend' },
+                    { name: 'python-scripts', path: '/mnt/c/Users/You/Projects/python-scripts', icon: '🐍', info: 'Python automation' },
+                    { name: 'web-portfolio', path: '/mnt/c/Users/You/Projects/web-portfolio', icon: '🌐', info: 'Personal website' }
+                ],
+                '/mnt/d': [
+                    { name: 'Backup', path: '/mnt/d/Backup', icon: '💾', info: 'System backups' },
+                    { name: 'Projects', path: '/mnt/d/Projects', icon: '💼', info: 'Large projects' },
+                    { name: 'Media', path: '/mnt/d/Media', icon: '🎵', info: 'Videos and music' }
+                ],
+                '/home': [
+                    { name: 'ubuntu', path: '/home/ubuntu', icon: '🐧', info: 'Ubuntu user home' },
+                    { name: 'shared', path: '/home/shared', icon: '🤝', info: 'Shared files' }
+                ]
+            };
+            
+            if (directoryMap[path]) {
+                return directoryMap[path];
+            }
+            
+            // Generate some example subdirectories for unknown paths
+            const suggestions = [];
+            if (path.includes('Desktop')) {
+                suggestions.push(
+                    { name: 'My Files', path: path + '/My Files', icon: '📁', info: 'Personal files' },
+                    { name: 'Shortcuts', path: path + '/Shortcuts', icon: '🔗', info: 'Desktop shortcuts' }
+                );
+            } else if (path.includes('Documents')) {
+                suggestions.push(
+                    { name: 'Work', path: path + '/Work', icon: '💼', info: 'Work documents' },
+                    { name: 'Personal', path: path + '/Personal', icon: '👤', info: 'Personal files' }
+                );
+            }
+            
+            return suggestions;
+        }
+        
+        function refreshBrowser() {
+            if (currentBrowserPath) {
+                navigateToPath(currentBrowserPath);
+            } else {
+                showDrives();
+            }
+        }
+        
+        function selectCurrentDirectory() {
+            if (selectedDirectoryPath) {
+                document.getElementById('newWorkspacePath').value = selectedDirectoryPath;
+                closeBrowser();
+                log(`📁 Selected directory: ${selectedDirectoryPath}`, 'success');
+            }
+        }
+        
+        async function changeWorkspace() {
+            const newPath = document.getElementById('newWorkspacePath').value.trim();
+            
+            if (!newPath) {
+                log('❌ Please enter a directory path', 'error');
+                return;
+            }
+            
+            log(`🔄 Attempting to switch monitoring to: ${newPath}`, 'info');
+            
+            // Update the UI immediately for better user experience
+            const workspaceElement = document.getElementById('workspacePath');
+            const previousPath = workspaceElement.textContent;
+            workspaceElement.textContent = newPath;
+            log(`✅ Workspace display updated to: ${newPath}`, 'success');
+            
+            try {
+                // Try to notify the server about the workspace change
+                const response = await fetch('http://localhost:3002/workspace/change', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        workspace: newPath
+                    })
+                });
+                
+                if (response.ok) {
+                    log(`✅ Server confirmed workspace change to: ${newPath}`, 'success');
+                    hideWorkspaceChanger();
+                    
+                    // Reload workspace info to get fresh data
+                    setTimeout(() => {
+                        loadWorkspaceInfo();
+                    }, 1000);
+                    
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+            } catch (error) {
+                log(`⚠️ Server workspace change failed: ${error.message}`, 'warning');
+                log(`💡 UI updated but server requires restart for full monitoring`, 'info');
+                log(`💡 For immediate full monitoring, use the "🚀 Restart Server" button`, 'info');
+                
+                // Keep the UI updated even if server fails
+                hideWorkspaceChanger();
+            }
+        }
+        
+        async function restartServerWithNewWorkspace() {
+            const newPath = document.getElementById('newWorkspacePath').value.trim();
+            
+            if (!newPath) {
+                log('❌ Please enter a directory path', 'error');
+                return;
+            }
+            
+            log(`🚀 Initiating server restart with new workspace: ${newPath}`, 'info');
+            log(`⏳ Step 1: Stopping current server...`, 'info');
+            
+            try {
+                // First, try to gracefully stop the current server
+                const stopResponse = await fetch('http://localhost:3002/server/stop', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (stopResponse.ok) {
+                    log(`✅ Server stop command sent successfully`, 'success');
+                } else {
+                    log(`⚠️ Server stop command failed, proceeding anyway`, 'warning');
+                }
+                
+            } catch (error) {
+                log(`⚠️ Could not send stop command: ${error.message}`, 'warning');
+            }
+            
+            // Show restart instructions
+            log(`🔄 Step 2: Starting new server instance...`, 'info');
+            log(`💻 Please run this command in your terminal:`, 'info');
+            log(`   /usr/local/go/bin/go run main.go "${newPath}"`, 'info');
+            log(`🔄 Step 3: Refresh this dashboard once the new server starts`, 'info');
+            
+            // Update UI to show the new path
+            const workspaceElement = document.getElementById('workspacePath');
+            workspaceElement.textContent = newPath;
+            
+            // Copy command to clipboard for convenience
+            try {
+                const command = `/usr/local/go/bin/go run main.go "${newPath}"`;
+                await navigator.clipboard.writeText(command);
+                log(`📋 Restart command copied to clipboard!`, 'success');
+                log(`💡 Using full Go path: /usr/local/go/bin/go`, 'info');
+            } catch (clipError) {
+                log(`📋 Could not copy to clipboard, but command is shown above`, 'info');
+            }
+            
+            hideWorkspaceChanger();
+            
+            // Set up connection monitoring to detect when new server is ready
+            monitorServerReconnection(newPath);
+        }
+        
+        async function monitorServerReconnection(expectedPath) {
+            log(`🔍 Monitoring for server restart...`, 'info');
+            let attemptCount = 0;
+            const maxAttempts = 30; // 30 seconds
+            
+            const checkConnection = async () => {
+                attemptCount++;
+                
+                try {
+                    const response = await fetch('http://localhost:3002/health');
+                    if (response.ok) {
+                        log(`✅ Server detected! Verifying workspace...`, 'success');
+                        
+                        // Small delay to let server fully initialize
+                        setTimeout(() => {
+                            loadWorkspaceInfo();
+                            log(`🎉 Server restart complete! Dashboard refreshed.`, 'success');
+                        }, 2000);
+                        
+                        return true;
+                    }
+                } catch (error) {
+                    // Server not ready yet
+                }
+                
+                if (attemptCount < maxAttempts) {
+                    log(`🔍 Waiting for server restart... (${attemptCount}/${maxAttempts})`, 'info');
+                    setTimeout(checkConnection, 1000);
+                } else {
+                    log(`⏰ Server restart monitoring timed out`, 'warning');
+                    log(`💡 Please manually refresh the dashboard when your server is ready`, 'info');
+                }
+                
+                return false;
+            };
+            
+            // Start monitoring after a brief delay
+            setTimeout(checkConnection, 2000);
+        }
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideWorkspaceChanger();
+            }
+        });
+        
+        // Close modal on backdrop click
+        document.getElementById('workspaceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideWorkspaceChanger();
+            }
+        });
+        
+        // Enter key in input field
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('newWorkspacePath').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    changeWorkspace();
+                }
+            });
+        });
     </script>
+
+    <!-- Directory Browser Modal - Moved to body level for proper z-index -->
+    <div id="browserBackdrop" class="browser-backdrop" style="display: none !important;" onclick="closeBrowser()"></div>
+    <div id="directoryBrowser" class="directory-browser" style="display: none !important;">
+        <div class="browser-header">
+            <div class="breadcrumb-container">
+                <button class="drives-btn" onclick="showDrives()" id="drivesBtn">💾 Drives</button>
+                <div class="breadcrumb" id="breadcrumb">
+                    <span class="breadcrumb-item" onclick="showDrives()">This PC</span>
+                </div>
+            </div>
+            <div class="browser-controls">
+                <button class="refresh-btn" onclick="refreshBrowser()">🔄</button>
+                <button class="close-btn" onclick="closeBrowser()">✕</button>
+            </div>
+        </div>
+        <div class="browser-body">
+            <div class="browser-sidebar">
+                <div class="quick-access">
+                    <div class="section-title">Quick Access</div>
+                    <div class="quick-item" onclick="navigateToQuick('Desktop')">🖥️ Desktop</div>
+                    <div class="quick-item" onclick="navigateToQuick('Documents')">📄 Documents</div>
+                    <div class="quick-item" onclick="navigateToQuick('Downloads')">⬇️ Downloads</div>
+                    <div class="quick-item" onclick="navigateToQuick('Projects')">💼 Projects</div>
+                </div>
+                <div class="drives-section">
+                    <div class="section-title">Drives</div>
+                    <div id="drivesList">
+                        <div class="drive-item" onclick="navigateToDrive('C:')">💿 Local Disk (C:)</div>
+                        <div class="drive-item" onclick="navigateToDrive('D:')">💾 Data Drive (D:)</div>
+                        <div class="drive-item" onclick="navigateToDrive('WSL')">🐧 WSL Linux</div>
+                    </div>
+                </div>
+            </div>
+            <div class="browser-main">
+                <div class="browser-content" id="browserContent">
+                    <div class="loading-dirs">💾 Select a drive or quick access folder to begin</div>
+                </div>
+            </div>
+        </div>
+        <div class="browser-actions">
+            <div class="selected-path" id="selectedPathDisplay">No folder selected</div>
+            <button class="select-btn" onclick="selectCurrentDirectory()" id="selectBtn" disabled>📁 Select This Folder</button>
+        </div>
+    </div>
+
 </body>
 </html> 

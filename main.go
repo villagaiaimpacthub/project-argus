@@ -1265,11 +1265,11 @@ func determineDirPurpose(name string) string {
 		"pages":       "pages",
 		"api":         "api",
 		"utils":       "utilities",
-		"helpers":     "utilities",
-		"middleware":  "middleware",
-		"models":      "models",
-		"controllers": "controllers",
-		"services":    "services",
+		".gitignore": "configuration",
+		".env":       "configuration",
+		"tsconfig.json": "configuration",
+		"webpack.config.js": "configuration",
+		"babel.config.js": "configuration",
 	}
 	
 	if purpose, exists := purposeMap[strings.ToLower(name)]; exists {
@@ -1577,6 +1577,12 @@ func (is *IntelligenceServer) setupRoutes() {
 	// Action routes
 	is.app.Post("/refresh", is.refreshHandler)
 	is.app.Post("/analyze", is.analyzeHandler)
+	
+	// Server control routes
+	is.app.Post("/server/stop", is.serverStopHandler)
+	
+	// Workspace management routes
+	is.app.Post("/workspace/change", is.workspaceChangeHandler)
 }
 
 func (is *IntelligenceServer) statusHandler(c *fiber.Ctx) error {
@@ -1792,6 +1798,69 @@ func (is *IntelligenceServer) analyzeHandler(c *fiber.Ctx) error {
 	
 	return c.JSON(fiber.Map{
 		"message": "Analysis started",
+	})
+}
+
+func (is *IntelligenceServer) serverStopHandler(c *fiber.Ctx) error {
+	log.Println("📴 Server stop request received via API")
+	
+	// Send response before shutting down
+	response := c.JSON(fiber.Map{
+		"message": "Server shutdown initiated",
+		"status":  "stopping",
+		"timestamp": time.Now(),
+	})
+	
+	// Schedule shutdown after response is sent
+	go func() {
+		time.Sleep(500 * time.Millisecond) // Give time for response to be sent
+		log.Println("🛑 Shutting down server...")
+		os.Exit(0)
+	}()
+	
+	return response
+}
+
+func (is *IntelligenceServer) workspaceChangeHandler(c *fiber.Ctx) error {
+	var request struct {
+		Workspace string `json:"workspace"`
+	}
+	
+	if err := c.BodyParser(&request); err != nil {
+		return c.Status(400).JSON(fiber.Map{
+			"error": "Invalid JSON format",
+			"details": err.Error(),
+		})
+	}
+	
+	newWorkspace := strings.TrimSpace(request.Workspace)
+	if newWorkspace == "" {
+		return c.Status(400).JSON(fiber.Map{
+			"error": "Workspace path cannot be empty",
+		})
+	}
+	
+	// Validate the workspace path exists
+	if _, err := os.Stat(newWorkspace); os.IsNotExist(err) {
+		return c.Status(404).JSON(fiber.Map{
+			"error": "Workspace path does not exist",
+			"path": newWorkspace,
+		})
+	}
+	
+	log.Printf("🔄 Workspace change request: %s -> %s", is.pi.workspace, newWorkspace)
+	
+	// Note: This doesn't actually change the workspace in the current implementation
+	// The server would need to be restarted with the new workspace path
+	// This endpoint provides acknowledgment for UI purposes
+	
+	return c.JSON(fiber.Map{
+		"message": "Workspace change acknowledged",
+		"old_workspace": is.pi.workspace,
+		"new_workspace": newWorkspace,
+		"note": "Server restart required for full workspace monitoring change",
+		"restart_command": fmt.Sprintf("/usr/local/go/bin/go run main.go \"%s\"", newWorkspace),
+		"timestamp": time.Now(),
 	})
 }
 
@@ -2580,31 +2649,43 @@ func (pm *ProcessMonitor) GetLatestErrors(since time.Duration) []StreamError {
 }
 
 func main() {
-	// Get workspace from command line argument
+	// Get workspace from command line argument or environment variable
 	workspace := "."
 	if len(os.Args) > 1 {
 		workspace = os.Args[1]
+	} else if envWorkspace := os.Getenv("ARGUS_WORKSPACE"); envWorkspace != "" {
+		workspace = envWorkspace
+	} else if envWorkspace := os.Getenv("WORKSPACE_PATH"); envWorkspace != "" {
+		workspace = envWorkspace
 	}
 
-	// Convert to absolute path
-	absWorkspace, err := filepath.Abs(workspace)
+	// Get absolute workspace path
+	absWorkspace, err := os.Getwd()
 	if err != nil {
-		log.Fatalf("Error getting absolute path: %v", err)
+		log.Fatalf("Failed to get current directory: %v", err)
 	}
 
-	log.Printf("Starting Project Argus monitoring for: %s", absWorkspace)
+	if workspace != "." {
+		absWorkspace = workspace
+	}
 
-	// Create intelligence service
-	server := NewIntelligenceServer(absWorkspace)
+	log.Printf("Starting Enhanced Project Argus monitoring for: %s", absWorkspace)
 
-	// Start the server
+	// Create enhanced intelligence service with multi-language support
+	server := NewEnhancedIntelligenceServer(absWorkspace)
+
+	// Get port from environment or use default
 	port := ":3002"
-	if portEnv := os.Getenv("CLAUDE_INTEL_PORT"); portEnv != "" {
+	if portEnv := os.Getenv("ARGUS_PORT"); portEnv != "" {
+		port = ":" + portEnv
+	} else if portEnv := os.Getenv("CLAUDE_INTEL_PORT"); portEnv != "" {
 		port = ":" + portEnv
 	}
 
-	log.Printf("Starting Project Argus on port %s", port)
+	log.Printf("Starting Enhanced Project Argus on port %s", port)
+	log.Printf("Enhanced multi-language monitoring for: %s", absWorkspace)
+	
 	if err := server.Start(port); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
+		log.Fatalf("Failed to start enhanced server: %v", err)
 	}
 }
