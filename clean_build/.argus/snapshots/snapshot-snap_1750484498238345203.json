@@ -1,0 +1,899 @@
+{
+  "id": "snap_1750484498238345203",
+  "name": "Post-Implementation Analysis",
+  "description": "Analysis of Project Argus after implementing the complete snapshot system with 117 handlers, multi-language support, and human-AI collaboration features.",
+  "created_at": "2025-06-21T07:41:38.238351964+02:00",
+  "updated_at": "2025-06-21T07:41:38.238352054+02:00",
+  "version": 1,
+  "project_state": {
+    "timestamp": "2025-06-21T07:41:11.875023927+02:00",
+    "structure": {
+      "root_path": "/mnt/c/Go Fiber Router Backend/clean_build",
+      "files": [
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+          "relative_path": "enhanced-argus",
+          "size": 11922686,
+          "mod_time": "2025-06-21T07:41:04+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/go.mod",
+          "relative_path": "go.mod",
+          "size": 787,
+          "mod_time": "2025-06-21T01:29:23.3766648+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/go.sum",
+          "relative_path": "go.sum",
+          "size": 2935,
+          "mod_time": "2025-06-21T01:29:23.3680515+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/go_plugin.go",
+          "relative_path": "go_plugin.go",
+          "size": 6643,
+          "mod_time": "2025-06-21T01:28:49.3689587+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 256
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/investigation_tracker.go",
+          "relative_path": "investigation_tracker.go",
+          "size": 11461,
+          "mod_time": "2025-06-21T07:28:19.032392+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 425
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/javascript_plugin.go",
+          "relative_path": "javascript_plugin.go",
+          "size": 14739,
+          "mod_time": "2025-06-21T01:28:49.4027652+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 513
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_detection.go",
+          "relative_path": "language_detection.go",
+          "size": 25728,
+          "mod_time": "2025-06-21T01:28:49.2912722+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 696
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_integration.go",
+          "relative_path": "language_integration.go",
+          "size": 44683,
+          "mod_time": "2025-06-21T07:34:28.4637508+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 1496
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_plugins.go",
+          "relative_path": "language_plugins.go",
+          "size": 10519,
+          "mod_time": "2025-06-21T01:28:49.3425935+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 388
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/main.go",
+          "relative_path": "main.go",
+          "size": 71002,
+          "mod_time": "2025-06-21T01:28:49.2673321+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 2691
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/mindmap.html",
+          "relative_path": "mindmap.html",
+          "size": 27064,
+          "mod_time": "2025-06-21T01:39:52.6652996+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/other_language_plugins.go",
+          "relative_path": "other_language_plugins.go",
+          "size": 10466,
+          "mod_time": "2025-06-21T01:29:58.7919988+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 367
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/python_plugin.go",
+          "relative_path": "python_plugin.go",
+          "size": 21266,
+          "mod_time": "2025-06-21T01:28:49.4286587+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 778
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_sharing.go",
+          "relative_path": "snapshot_sharing.go",
+          "size": 15319,
+          "mod_time": "2025-06-21T07:34:55.8043673+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 463
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_system.go",
+          "relative_path": "snapshot_system.go",
+          "size": 15750,
+          "mod_time": "2025-06-21T07:29:38.1389814+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 419
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_versioning.go",
+          "relative_path": "snapshot_versioning.go",
+          "size": 8904,
+          "mod_time": "2025-06-21T07:30:24.5828267+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 292
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshots.html",
+          "relative_path": "snapshots.html",
+          "size": 27266,
+          "mod_time": "2025-06-21T07:24:02.7563243+02:00",
+          "is_executable": true,
+          "language": "text"
+        },
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build/typescript_plugin.go",
+          "relative_path": "typescript_plugin.go",
+          "size": 12295,
+          "mod_time": "2025-06-21T01:28:49.4485133+02:00",
+          "is_executable": true,
+          "language": "go",
+          "line_count": 416
+        }
+      ],
+      "directories": [
+        {
+          "path": "/mnt/c/Go Fiber Router Backend/clean_build",
+          "relative_path": ".",
+          "file_count": 0,
+          "purpose": "general"
+        }
+      ],
+      "project_type": "go",
+      "main_files": [
+        "main.go"
+      ],
+      "config_files": [
+        "go.mod"
+      ],
+      "total_files": 18,
+      "total_size": 12249513
+    },
+    "recent_changes": [
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "created",
+        "timestamp": "2025-06-21T07:35:09.221446+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/language_integration.go",
+        "type": "created",
+        "timestamp": "2025-06-21T07:34:28.4637508+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/snapshot_sharing.go",
+        "type": "created",
+        "timestamp": "2025-06-21T07:34:55.8043673+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:38:25+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:38:37+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:38:53+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:39:05+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:39:17+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:39:33+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:39:45+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:40:00+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:40:12+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:40:24+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:40:39+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:40:52+02:00"
+      },
+      {
+        "path": "/mnt/c/Go Fiber Router Backend/clean_build/enhanced-argus",
+        "type": "modified",
+        "timestamp": "2025-06-21T07:41:04+02:00"
+      }
+    ],
+    "git_status": {
+      "branch": "main",
+      "commit_hash": "861172a8",
+      "commit_message": "Add interactive mind-map visualization system",
+      "is_dirty": true,
+      "untracked_files": null,
+      "modified_files": [
+        "clean_build/enhanced-argus",
+        "clean_build/language_integration.go",
+        "clean_build/investigation_tracker.go",
+        "clean_build/snapshot_sharing.go",
+        "clean_build/snapshot_system.go",
+        "clean_build/snapshot_versioning.go",
+        "clean_build/snapshots.html"
+      ],
+      "staged_files": null,
+      "ahead": 0,
+      "behind": 0,
+      "last_commit_time": "2025-06-21T07:17:19+02:00"
+    },
+    "active_errors": [],
+    "build_status": {
+      "is_building": false,
+      "last_build_time": "2025-06-21T07:41:19.157684797+02:00",
+      "success": true,
+      "duration": "",
+      "output": "",
+      "errors": null,
+      "warnings": null
+    },
+    "running_processes": [
+      {
+        "pid": 211,
+        "name": "/usr/bin/python3",
+        "command": "/usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal",
+        "start_time": "2025-06-21T07:41:05.873247805+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 14698,
+        "name": "/bin/bash",
+        "command": "/bin/bash -c -l source /tmp/claude-shell-snapshot-2f16 \u0026\u0026 eval 'cd /mnt/c/task-dashboard \u0026\u0026 python3 -m http.server 3001 \u0026' \\\u003c /dev/null \u0026\u0026 pwd -P \u003e| /tmp/claude-2291-cwd",
+        "start_time": "2025-06-21T07:41:05.873252181+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 14700,
+        "name": "python3",
+        "command": "python3 -m http.server 3001",
+        "start_time": "2025-06-21T07:41:05.873254278+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 17582,
+        "name": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python",
+        "command": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+        "start_time": "2025-06-21T07:41:05.873255646+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 17591,
+        "name": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python",
+        "command": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python -c from multiprocessing.resource_tracker import main;main(4)",
+        "start_time": "2025-06-21T07:41:05.87326139+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 22053,
+        "name": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python",
+        "command": "/home/user/.cache/pypoetry/virtualenvs/hive-backend-alpha-cOnhtnRQ-py3.12/bin/python -c from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=5, pipe_handle=11) --multiprocessing-fork",
+        "start_time": "2025-06-21T07:41:05.873263122+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 34087,
+        "name": "python3",
+        "command": "python3 -m http.server 8080",
+        "start_time": "2025-06-21T07:41:05.873263578+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 694592,
+        "name": "/bin/bash",
+        "command": "/bin/bash -c -l source /tmp/claude-shell-snapshot-2f16 \u0026\u0026 eval 'node server.js' \\\u003c /dev/null \u0026\u0026 pwd -P \u003e| /tmp/claude-0e63-cwd",
+        "start_time": "2025-06-21T07:41:05.873266313+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      },
+      {
+        "pid": 694616,
+        "name": "node",
+        "command": "node server.js",
+        "start_time": "2025-06-21T07:41:05.873267772+02:00",
+        "cpu_percent": 0,
+        "memory_mb": 0,
+        "is_project_related": false
+      }
+    ],
+    "dependencies": [
+      {
+        "name": "github.com/gofiber/fiber/v2",
+        "version": "v2.52.8",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/gofiber/websocket/v2",
+        "version": "v2.2.1",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/andybalholm/brotli",
+        "version": "v1.1.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/fasthttp/websocket",
+        "version": "v1.5.3",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/google/uuid",
+        "version": "v1.6.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/klauspost/compress",
+        "version": "v1.17.9",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/mattn/go-colorable",
+        "version": "v0.1.13",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/mattn/go-isatty",
+        "version": "v0.0.20",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/mattn/go-runewidth",
+        "version": "v0.0.16",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/rivo/uniseg",
+        "version": "v0.2.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/savsgio/gotils",
+        "version": "v0.0.0-20230208104028-c358bd845dee",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/valyala/bytebufferpool",
+        "version": "v1.0.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/valyala/fasthttp",
+        "version": "v1.51.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "github.com/valyala/tcplisten",
+        "version": "v1.0.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      },
+      {
+        "name": "golang.org/x/sys",
+        "version": "v0.28.0",
+        "type": "direct",
+        "source": "go.mod",
+        "has_update": false
+      }
+    ],
+    "todos": [
+      {
+        "file": "language_detection.go",
+        "line": 692,
+        "type": "TODO",
+        "message": "TODO: Implement service discovery, API endpoint detection, and relationship mapping"
+      },
+      {
+        "file": "main.go",
+        "line": 130,
+        "type": "TODO",
+        "message": "TODOs           []TodoItem             `json:\"todos\"`"
+      },
+      {
+        "file": "main.go",
+        "line": 251,
+        "type": "TODO",
+        "message": "TodoItem represents TODO/FIXME items found in code"
+      },
+      {
+        "file": "main.go",
+        "line": 252,
+        "type": "TODO",
+        "message": "TodoItem struct {"
+      },
+      {
+        "file": "main.go",
+        "line": 255,
+        "type": "TODO",
+        "message": "TODO, FIXME, HACK, NOTE"
+      },
+      {
+        "file": "main.go",
+        "line": 414,
+        "type": "TODO",
+        "message": "TODOs:           pi.findTodos(),"
+      },
+      {
+        "file": "main.go",
+        "line": 772,
+        "type": "XXX",
+        "message": "xxxx: message"
+      },
+      {
+        "file": "main.go",
+        "line": 1143,
+        "type": "NOTE",
+        "message": "NotExist(err) {"
+      },
+      {
+        "file": "main.go",
+        "line": 1388,
+        "type": "TODO",
+        "message": "TODO finder"
+      },
+      {
+        "file": "main.go",
+        "line": 1389,
+        "type": "TODO",
+        "message": "Todos() []TodoItem {"
+      },
+      {
+        "file": "main.go",
+        "line": 1390,
+        "type": "TODO",
+        "message": "todos := []TodoItem{}"
+      },
+      {
+        "file": "main.go",
+        "line": 1410,
+        "type": "TODO",
+        "message": "TODO, FIXME, HACK, NOTE patterns"
+      },
+      {
+        "file": "main.go",
+        "line": 1411,
+        "type": "TODO",
+        "message": "TODO\", \"FIXME\", \"HACK\", \"NOTE\", \"XXX\"}"
+      },
+      {
+        "file": "main.go",
+        "line": 1421,
+        "type": "TODO",
+        "message": "todos = append(todos, TodoItem{"
+      },
+      {
+        "file": "main.go",
+        "line": 1435,
+        "type": "TODO",
+        "message": "todos"
+      },
+      {
+        "file": "main.go",
+        "line": 1551,
+        "type": "TODO",
+        "message": "todos\", is.todosHandler)"
+      },
+      {
+        "file": "main.go",
+        "line": 1603,
+        "type": "TODO",
+        "message": "todos - TODO items in code\","
+      },
+      {
+        "file": "main.go",
+        "line": 1684,
+        "type": "TODO",
+        "message": "todosHandler(c *fiber.Ctx) error {"
+      },
+      {
+        "file": "main.go",
+        "line": 1690,
+        "type": "TODO",
+        "message": "TODOs)"
+      },
+      {
+        "file": "main.go",
+        "line": 1844,
+        "type": "NOTE",
+        "message": "NotExist(err) {"
+      },
+      {
+        "file": "main.go",
+        "line": 1853,
+        "type": "NOTE",
+        "message": "Note: This doesn't actually change the workspace in the current implementation"
+      },
+      {
+        "file": "main.go",
+        "line": 1861,
+        "type": "NOTE",
+        "message": "note\": \"Server restart required for full workspace monitoring change\","
+      },
+      {
+        "file": "main.go",
+        "line": 2221,
+        "type": "TODO",
+        "message": "TODO items"
+      },
+      {
+        "file": "main.go",
+        "line": 2222,
+        "type": "TODO",
+        "message": "todo := range snapshot.TODOs {"
+      },
+      {
+        "file": "main.go",
+        "line": 2223,
+        "type": "TODO",
+        "message": "todo.Message), queryLower) {"
+      },
+      {
+        "file": "main.go",
+        "line": 2225,
+        "type": "TODO",
+        "message": "todo\","
+      },
+      {
+        "file": "main.go",
+        "line": 2226,
+        "type": "TODO",
+        "message": "todo.File,"
+      },
+      {
+        "file": "main.go",
+        "line": 2227,
+        "type": "TODO",
+        "message": "todo.Line,"
+      },
+      {
+        "file": "main.go",
+        "line": 2228,
+        "type": "TODO",
+        "message": "todo.Message,"
+      },
+      {
+        "file": "main.go",
+        "line": 2229,
+        "type": "TODO",
+        "message": "todo\","
+      },
+      {
+        "file": "main.go",
+        "line": 2287,
+        "type": "TODO",
+        "message": "todo_count\":      len(snapshot.TODOs),"
+      },
+      {
+        "file": "python_plugin.go",
+        "line": 343,
+        "type": "NOTE",
+        "message": "note): (.+)`)"
+      },
+      {
+        "file": "python_plugin.go",
+        "line": 352,
+        "type": "NOTE",
+        "message": "note\" {"
+      },
+      {
+        "file": "typescript_plugin.go",
+        "line": 147,
+        "type": "XXX",
+        "message": "xxxx: message"
+      }
+    ],
+    "health": {
+      "score": 100,
+      "error_count": 0,
+      "warning_count": 0,
+      "test_coverage": 0,
+      "technical_debt": "low",
+      "last_health_check": "2025-06-21T07:41:12.114746649+02:00"
+    },
+    "languages": [
+      {
+        "language": {
+          "name": "Go",
+          "extensions": [
+            ".go"
+          ],
+          "config_files": [
+            "go.mod",
+            "go.sum",
+            "go.work"
+          ],
+          "lint_tools": [
+            "golint",
+            "golangci-lint",
+            "staticcheck",
+            "vet"
+          ],
+          "test_frameworks": [
+            "testing",
+            "testify",
+            "ginkgo",
+            "gomega"
+          ],
+          "package_managers": [
+            "go"
+          ],
+          "build_tools": [
+            "go"
+          ],
+          "frameworks": [
+            "gin",
+            "echo",
+            "fiber",
+            "chi",
+            "gorilla",
+            "beego"
+          ],
+          "default_ports": [
+            8080,
+            8000,
+            3000,
+            9000
+          ]
+        },
+        "file_count": 13,
+        "line_count": 9200,
+        "main_files": [
+          "main.go"
+        ],
+        "config_files": [
+          "go.mod",
+          "go.sum"
+        ],
+        "frameworks": [
+          {
+            "name": "Fiber",
+            "language": "go",
+            "version": "",
+            "config_file": "go.mod",
+            "default_port": 3000,
+            "dev_command": "go run main.go",
+            "build_command": "go build",
+            "test_command": "go test ./...",
+            "metadata": null
+          }
+        ],
+        "build_tools": [],
+        "has_tests": false,
+        "has_linting": false,
+        "package_manager": "go"
+      }
+    ],
+    "topology": {
+      "languages": [
+        {
+          "language": {
+            "name": "Go",
+            "extensions": [
+              ".go"
+            ],
+            "config_files": [
+              "go.mod",
+              "go.sum",
+              "go.work"
+            ],
+            "lint_tools": [
+              "golint",
+              "golangci-lint",
+              "staticcheck",
+              "vet"
+            ],
+            "test_frameworks": [
+              "testing",
+              "testify",
+              "ginkgo",
+              "gomega"
+            ],
+            "package_managers": [
+              "go"
+            ],
+            "build_tools": [
+              "go"
+            ],
+            "frameworks": [
+              "gin",
+              "echo",
+              "fiber",
+              "chi",
+              "gorilla",
+              "beego"
+            ],
+            "default_ports": [
+              8080,
+              8000,
+              3000,
+              9000
+            ]
+          },
+          "file_count": 13,
+          "line_count": 9200,
+          "main_files": [
+            "main.go"
+          ],
+          "config_files": [
+            "go.mod",
+            "go.sum"
+          ],
+          "frameworks": [
+            {
+              "name": "Fiber",
+              "language": "go",
+              "version": "",
+              "config_file": "go.mod",
+              "default_port": 3000,
+              "dev_command": "go run main.go",
+              "build_command": "go build",
+              "test_command": "go test ./...",
+              "metadata": null
+            }
+          ],
+          "build_tools": [],
+          "has_tests": false,
+          "has_linting": false,
+          "package_manager": "go"
+        }
+      ],
+      "services": [],
+      "databases": [],
+      "apis": [],
+      "relations": [],
+      "updated_at": "2025-06-21T07:40:54.431828442+02:00"
+    },
+    "updated_at": "2025-06-21T07:41:38.238338983+02:00"
+  },
+  "investigation": {
+    "focus": "Initial investigation",
+    "goals": [],
+    "current_phase": "discovery",
+    "questions": [],
+    "hypotheses": [],
+    "findings": [],
+    "next_steps": [],
+    "blockers": []
+  },
+  "collaboration": {
+    "session_id": "sess_1750484498238352054",
+    "interaction_count": 0,
+    "last_interaction": "2025-06-21T07:41:38.238352324+02:00",
+    "ai_recommendations": [],
+    "human_decisions": [],
+    "shared_context": {},
+    "communication_log": [],
+    "tool_usage": {}
+  },
+  "metadata": {
+    "tags": [
+      "initial"
+    ],
+    "project_path": "/mnt/c/Go Fiber Router Backend/clean_build",
+    "environment": {
+      "go_version": "1.21",
+      "os": "linux",
+      "timestamp": "2025-06-21T07:41:38+02:00"
+    },
+    "size": 17193,
+    "checksum": "sha256:7dba0842c2470b0e1fa9e2465d9880e47609bcb84935cf9a1610095cdeebec90",
+    "related_snapshots": [],
+    "export_formats": [
+      "json",
+      "markdown",
+      "html"
+    ]
+  }
+}

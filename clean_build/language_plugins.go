@@ -27,11 +27,11 @@ type LanguagePlugin interface {
 
 // BaseLanguagePlugin provides common functionality for all language plugins
 type BaseLanguagePlugin struct {
-	Name         string
-	Extensions   []string
-	ConfigFiles  []string
+	Name          string
+	Extensions    []string
+	ConfigFiles   []string
 	ErrorPatterns []ErrorPattern
-	mutex        sync.RWMutex
+	mutex         sync.RWMutex
 }
 
 // GetName returns the plugin name
@@ -354,10 +354,10 @@ func detectRunningProcesses(projectPath string, defaultPorts []int) []ServiceInf
 	for _, port := range defaultPorts {
 		if isPortInUse(port) {
 			service := ServiceInfo{
-				ID:       fmt.Sprintf("service-%d", port),
-				Name:     fmt.Sprintf("Service on port %d", port),
-				Port:     port,
-				Status:   "running",
+				ID:     fmt.Sprintf("service-%d", port),
+				Name:   fmt.Sprintf("Service on port %d", port),
+				Port:   port,
+				Status: "running",
 			}
 			services = append(services, service)
 		}

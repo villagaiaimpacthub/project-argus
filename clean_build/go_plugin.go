@@ -32,22 +32,22 @@ func NewGoPlugin() *GoPlugin {
 					ColumnRegex: `.+\.go:\d+:(\d+):`,
 				},
 				{
-					Pattern:     `panic: .+`,
-					Type:        "runtime",
-					Severity:    "error",
-					Language:    "go",
+					Pattern:  `panic: .+`,
+					Type:     "runtime",
+					Severity: "error",
+					Language: "go",
 				},
 				{
-					Pattern:     `cannot find package .+`,
-					Type:        "import",
-					Severity:    "error",
-					Language:    "go",
+					Pattern:  `cannot find package .+`,
+					Type:     "import",
+					Severity: "error",
+					Language: "go",
 				},
 				{
-					Pattern:     `undefined: .+`,
-					Type:        "compile",
-					Severity:    "error",
-					Language:    "go",
+					Pattern:  `undefined: .+`,
+					Type:     "compile",
+					Severity: "error",
+					Language: "go",
 				},
 			},
 		},
@@ -135,7 +135,7 @@ func (gp *GoPlugin) GetDependencies(projectPath string) ([]DependencyInfo, error
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
-		
+
 		// Parse require statements
 		if strings.HasPrefix(line, "require ") || (strings.Contains(line, " v") && !strings.HasPrefix(line, "module")) {
 			parts := strings.Fields(line)
@@ -144,7 +144,7 @@ func (gp *GoPlugin) GetDependencies(projectPath string) ([]DependencyInfo, error
 				if name == "require" && len(parts) >= 3 {
 					name = parts[1]
 				}
-				
+
 				version := "latest"
 				for _, part := range parts {
 					if strings.HasPrefix(part, "v") {
@@ -152,7 +152,7 @@ func (gp *GoPlugin) GetDependencies(projectPath string) ([]DependencyInfo, error
 						break
 					}
 				}
-				
+
 				deps = append(deps, DependencyInfo{
 					Name:    name,
 					Version: version,
@@ -198,13 +198,13 @@ func (gp *GoPlugin) FindServices(projectPath string) ([]ServiceInfo, error) {
 // detectGoFramework detects Go web frameworks
 func (gp *GoPlugin) detectGoFramework(projectPath string) string {
 	goFiles, _ := findFilesWithExtensions(projectPath, gp.Extensions)
-	
+
 	for _, file := range goFiles {
 		content, err := os.ReadFile(file)
 		if err != nil {
 			continue
 		}
-		
+
 		contentStr := string(content)
 		if strings.Contains(contentStr, "github.com/gin-gonic/gin") {
 			return "gin"
@@ -214,7 +214,7 @@ func (gp *GoPlugin) detectGoFramework(projectPath string) string {
 			return "echo"
 		}
 	}
-	
+
 	return ""
 }
 
@@ -230,7 +230,7 @@ func (gp *GoPlugin) RunTests(projectPath string) (*TestResults, error) {
 	}
 
 	output, err := runCommand("go", []string{"test", "-v", "./..."}, projectPath, 120*time.Second)
-	
+
 	results := &TestResults{
 		LastRun: time.Now(),
 	}
@@ -244,7 +244,7 @@ func (gp *GoPlugin) RunTests(projectPath string) (*TestResults, error) {
 			results.FailedTests++
 		}
 	}
-	
+
 	results.TotalTests = results.PassedTests + results.FailedTests
 
 	return results, err

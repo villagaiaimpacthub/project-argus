@@ -24,7 +24,9 @@
       "Bash(sed:*)",
       "Bash(pkill:*)",
       "Bash(cp:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(python3:*)",
+      "Bash(go vet:*)"
     ],
     "deny": []
   }

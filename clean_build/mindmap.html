@@ -14,8 +14,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #e2e8f0;
             overflow: hidden;
         }
 
@@ -25,13 +25,14 @@
             left: 0;
             right: 0;
             height: 60px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(15, 23, 42, 0.95);
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 20px;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .header h1 {
@@ -50,7 +51,7 @@
             border: none;
             border-radius: 6px;
             background: #64ffda;
-            color: #1e3c72;
+            color: #0f172a;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -59,27 +60,29 @@
         .btn:hover {
             background: #4fd3b3;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(100, 255, 218, 0.3);
         }
 
         .view-toggle {
             display: flex;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(30, 41, 59, 0.8);
             border-radius: 6px;
             overflow: hidden;
+            border: 1px solid rgba(100, 255, 218, 0.2);
         }
 
         .view-toggle button {
             padding: 8px 16px;
             border: none;
             background: transparent;
-            color: white;
+            color: #e2e8f0;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .view-toggle button.active {
             background: #64ffda;
-            color: #1e3c72;
+            color: #0f172a;
         }
 
         .status-bar {
@@ -114,62 +117,64 @@
 
         .node {
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .node:hover {
-            transform: scale(1.1);
         }
 
         .node-circle {
-            transition: all 0.3s ease;
+            transition: stroke-width 0.2s ease, filter 0.2s ease;
+        }
+
+        .node:hover .node-circle {
+            stroke-width: 3px;
+            filter: url(#glow) brightness(1.2);
         }
 
         .node-text {
             font-family: 'Segoe UI', sans-serif;
             font-size: 12px;
-            fill: white;
+            fill: #e2e8f0;
             text-anchor: middle;
             pointer-events: none;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
         }
 
         .link {
             stroke: #64ffda;
-            stroke-opacity: 0.6;
+            stroke-opacity: 0.4;
             stroke-width: 2;
             fill: none;
-            transition: all 0.3s ease;
+            transition: stroke-opacity 0.2s ease, stroke-width 0.2s ease;
         }
 
         .link:hover {
-            stroke-opacity: 1;
+            stroke-opacity: 0.8;
             stroke-width: 3;
         }
 
         .tooltip {
             position: absolute;
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 10px;
-            border-radius: 6px;
+            background: rgba(15, 23, 42, 0.95);
+            color: #e2e8f0;
+            padding: 12px;
+            border-radius: 8px;
             font-size: 12px;
             pointer-events: none;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s ease;
             backdrop-filter: blur(10px);
-            border: 1px solid #64ffda;
+            border: 1px solid rgba(100, 255, 218, 0.5);
             max-width: 300px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .legend {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(15, 23, 42, 0.9);
             padding: 15px;
             border-radius: 8px;
             backdrop-filter: blur(10px);
-            border: 1px solid #64ffda;
+            border: 1px solid rgba(100, 255, 218, 0.3);
         }
 
         .legend h3 {
@@ -197,8 +202,8 @@
             right: 20px;
             width: 200px;
             height: 150px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #64ffda;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(100, 255, 218, 0.3);
             border-radius: 8px;
             overflow: hidden;
         }
@@ -379,18 +384,14 @@
 
             async loadData() {
                 try {
-                    // Load topology data
-                    const [topology, languages, snapshot] = await Promise.all([
-                        fetch('/api/topology').then(r => r.json()),
-                        fetch('/api/languages').then(r => r.json()),
+                    // Load mindmap-specific data and health info
+                    const [mindmapData, healthData] = await Promise.all([
+                        fetch(`/api/topology/mindmap?view=${this.currentView}`).then(r => r.json()),
                         fetch('/api/enhanced-snapshot').then(r => r.json())
                     ]);
 
-                    this.data = {
-                        topology,
-                        languages: languages.languages || [],
-                        snapshot
-                    };
+                    this.data = mindmapData;
+                    this.healthData = healthData;
 
                     this.updateStatusBar();
                     this.renderMindMap();
@@ -402,30 +403,30 @@
             }
 
             updateStatusBar() {
-                const health = this.data.snapshot?.health || { score: 0 };
-                const languageCount = this.data.languages?.length || 0;
-                const serviceCount = this.data.topology?.services?.length || 0;
+                const health = this.healthData?.health || { score: 0 };
+                const metadata = this.data?.metadata || {};
 
                 // Health status
                 const healthElement = document.getElementById('healthStatus');
-                healthElement.textContent = `Health: ${health.score}/100`;
+                healthElement.textContent = `Health: ${metadata.health_score || health.score}/100`;
                 
                 const healthDot = healthElement.parentElement.querySelector('.status-dot');
+                const score = metadata.health_score || health.score;
                 healthDot.className = 'status-dot ' + (
-                    health.score >= 80 ? 'healthy' : 
-                    health.score >= 50 ? 'warning' : 'error'
+                    score >= 80 ? 'healthy' : 
+                    score >= 50 ? 'warning' : 'error'
                 );
 
                 // Counts
-                document.getElementById('languageCount').textContent = `Languages: ${languageCount}`;
-                document.getElementById('serviceCount').textContent = `Services: ${serviceCount}`;
+                document.getElementById('languageCount').textContent = `Languages: ${metadata.language_count || 0}`;
+                document.getElementById('serviceCount').textContent = `Services: ${metadata.service_count || 0}`;
             }
 
             renderMindMap() {
-                if (!this.data) return;
+                if (!this.data || !this.data.nodes || !this.data.links) return;
 
-                const nodes = this.createNodes();
-                const links = this.createLinks(nodes);
+                const nodes = this.data.nodes;
+                const links = this.data.links;
 
                 this.renderNodes(nodes);
                 this.renderLinks(links);
@@ -560,7 +561,7 @@
                     .attr('class', 'node-circle')
                     .attr('r', d => d.size)
                     .attr('fill', d => d.color)
-                    .attr('stroke', '#fff')
+                    .attr('stroke', '#e2e8f0')
                     .attr('stroke-width', 2)
                     .style('filter', 'url(#glow)');
 
@@ -570,10 +571,22 @@
                     .attr('dy', '0.35em')
                     .text(d => d.name);
 
-                // Add tooltips
+                // Add tooltips with proper event handling
                 nodeEnter
-                    .on('mouseover', this.showTooltip.bind(this))
-                    .on('mouseout', this.hideTooltip.bind(this));
+                    .on('mouseover', (event, d) => {
+                        this.showTooltip(event, d);
+                    })
+                    .on('mouseout', () => {
+                        this.hideTooltip();
+                    })
+                    .on('mousemove', (event) => {
+                        // Update tooltip position smoothly
+                        const tooltip = document.getElementById('tooltip');
+                        if (tooltip.style.opacity > 0) {
+                            tooltip.style.left = (event.pageX + 15) + 'px';
+                            tooltip.style.top = (event.pageY + 15) + 'px';
+                        }
+                    });
 
                 // Update existing nodes
                 nodeSelection.merge(nodeEnter)
@@ -600,10 +613,12 @@
 
             startSimulation(nodes, links) {
                 this.simulation = d3.forceSimulation(nodes)
-                    .force('link', d3.forceLink(links).id(d => d.id).distance(80))
-                    .force('charge', d3.forceManyBody().strength(-300))
+                    .force('link', d3.forceLink(links).id(d => d.id).distance(120).strength(0.5))
+                    .force('charge', d3.forceManyBody().strength(-400))
                     .force('center', d3.forceCenter(this.width / 2, this.height / 2))
-                    .force('collision', d3.forceCollide().radius(d => d.size + 5));
+                    .force('collision', d3.forceCollide().radius(d => d.size + 10))
+                    .alphaDecay(0.02) // Slower decay for more stable positioning
+                    .velocityDecay(0.8); // Higher velocity decay to reduce jitter
 
                 this.simulation.on('tick', () => {
                     this.linkGroup.selectAll('.link')
@@ -626,8 +641,8 @@
                 });
                 document.getElementById(view + 'View').classList.add('active');
 
-                // Re-render with new view
-                this.renderMindMap();
+                // Reload data for new view
+                this.loadData();
             }
 
             showTooltip(event, d) {
@@ -635,22 +650,29 @@
                 let content = `<strong>${d.name}</strong><br>`;
                 
                 switch (d.type) {
+                    case 'project':
+                        content += `Health Score: ${d.metadata?.health_score || 'N/A'}<br>`;
+                        content += `Total Files: ${d.metadata?.total_files || 'N/A'}<br>`;
+                        content += `Total Size: ${d.metadata?.total_size || 'N/A'} bytes`;
+                        break;
                     case 'language':
-                        content += `Files: ${d.fileCount}<br>`;
-                        content += `Lines: ${d.lineCount}<br>`;
-                        if (d.frameworks.length > 0) {
-                            content += `Frameworks: ${d.frameworks.map(f => f.name).join(', ')}`;
+                        content += `Files: ${d.metadata?.file_count || 'N/A'}<br>`;
+                        content += `Lines: ${d.metadata?.line_count || 'N/A'}<br>`;
+                        if (d.metadata?.frameworks && d.metadata.frameworks.length > 0) {
+                            content += `Frameworks: ${d.metadata.frameworks.map(f => f.name).join(', ')}`;
                         }
                         break;
                     case 'service':
-                        content += `Language: ${d.language}<br>`;
-                        content += `Framework: ${d.framework}<br>`;
-                        content += `Port: ${d.port}<br>`;
-                        content += `Status: ${d.status}`;
+                        content += `Language: ${d.metadata?.language || 'N/A'}<br>`;
+                        content += `Framework: ${d.metadata?.framework || 'N/A'}<br>`;
+                        content += `Port: ${d.metadata?.port || 'N/A'}<br>`;
+                        content += `Status: ${d.metadata?.status || 'N/A'}`;
                         break;
                     case 'error':
-                        content += `Errors: ${d.errors.length}<br>`;
-                        content += d.errors.slice(0, 3).map(e => e.message).join('<br>');
+                        content += `Errors: ${d.metadata?.error_count || 'N/A'}<br>`;
+                        if (d.metadata?.errors) {
+                            content += d.metadata.errors.slice(0, 3).map(e => e.message || e).join('<br>');
+                        }
                         break;
                 }
 
@@ -665,7 +687,7 @@
             }
 
             dragstarted(event, d) {
-                if (!event.active) this.simulation.alphaTarget(0.3).restart();
+                if (!event.active) this.simulation.alphaTarget(0.1).restart();
                 d.fx = d.x;
                 d.fy = d.y;
             }
@@ -677,8 +699,10 @@
 
             dragended(event, d) {
                 if (!event.active) this.simulation.alphaTarget(0);
-                d.fx = null;
-                d.fy = null;
+                // Keep nodes fixed after dragging to prevent drift
+                // Uncomment next lines if you want nodes to stay where dragged
+                // d.fx = d.x;
+                // d.fy = d.y;
             }
 
             updateMinimap() {

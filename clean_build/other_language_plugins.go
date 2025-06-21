@@ -35,21 +35,21 @@ func NewJavaPlugin() *JavaPlugin {
 
 func (jp *JavaPlugin) AnalyzeErrors(projectPath string) ([]ErrorInfo, error) {
 	var allErrors []ErrorInfo
-	
+
 	// Check for Maven
 	if _, err := os.Stat(filepath.Join(projectPath, "pom.xml")); err == nil {
 		if errors := jp.runMavenCompile(projectPath); len(errors) > 0 {
 			allErrors = append(allErrors, errors...)
 		}
 	}
-	
+
 	// Check for Gradle
 	if _, err := os.Stat(filepath.Join(projectPath, "build.gradle")); err == nil {
 		if errors := jp.runGradleCompile(projectPath); len(errors) > 0 {
 			allErrors = append(allErrors, errors...)
 		}
 	}
-	
+
 	return allErrors, nil
 }
 
@@ -57,7 +57,7 @@ func (jp *JavaPlugin) runMavenCompile(projectPath string) []ErrorInfo {
 	if !checkCommandExists("mvn") {
 		return nil
 	}
-	
+
 	output, err := runCommand("mvn", []string{"compile"}, projectPath, 120*time.Second)
 	if err != nil && output != "" {
 		return parseErrorWithRegex(output, jp.ErrorPatterns)
@@ -69,12 +69,12 @@ func (jp *JavaPlugin) runGradleCompile(projectPath string) []ErrorInfo {
 	if !checkCommandExists("gradle") && !checkCommandExists("./gradlew") {
 		return nil
 	}
-	
+
 	cmd := "gradle"
 	if _, err := os.Stat(filepath.Join(projectPath, "gradlew")); err == nil {
 		cmd = "./gradlew"
 	}
-	
+
 	output, err := runCommand(cmd, []string{"compileJava"}, projectPath, 120*time.Second)
 	if err != nil && output != "" {
 		return parseErrorWithRegex(output, jp.ErrorPatterns)
@@ -133,12 +133,12 @@ func (csp *CSharpPlugin) AnalyzeErrors(projectPath string) ([]ErrorInfo, error) 
 	if !checkCommandExists("dotnet") {
 		return nil, fmt.Errorf("dotnet CLI not available")
 	}
-	
+
 	output, err := runCommand("dotnet", []string{"build"}, projectPath, 120*time.Second)
 	if err != nil && output != "" {
 		return parseErrorWithRegex(output, csp.ErrorPatterns), nil
 	}
-	
+
 	return []ErrorInfo{}, nil
 }
 
@@ -177,16 +177,16 @@ func NewRustPlugin() *RustPlugin {
 			ConfigFiles: []string{"Cargo.toml", "Cargo.lock"},
 			ErrorPatterns: []ErrorPattern{
 				{
-					Pattern:   `error\[E\d+\]: (.+)`,
-					Type:      "compile",
-					Severity:  "error",
-					Language:  "rust",
+					Pattern:  `error\[E\d+\]: (.+)`,
+					Type:     "compile",
+					Severity: "error",
+					Language: "rust",
 				},
 				{
-					Pattern:   `warning: (.+)`,
-					Type:      "lint",
-					Severity:  "warning",
-					Language:  "rust",
+					Pattern:  `warning: (.+)`,
+					Type:     "lint",
+					Severity: "warning",
+					Language: "rust",
 				},
 			},
 		},
@@ -197,12 +197,12 @@ func (rp *RustPlugin) AnalyzeErrors(projectPath string) ([]ErrorInfo, error) {
 	if !checkCommandExists("cargo") {
 		return nil, fmt.Errorf("cargo not available")
 	}
-	
+
 	output, err := runCommand("cargo", []string{"check"}, projectPath, 120*time.Second)
 	if err != nil && output != "" {
 		return parseErrorWithRegex(output, rp.ErrorPatterns), nil
 	}
-	
+
 	return []ErrorInfo{}, nil
 }
 
@@ -219,12 +219,12 @@ func (rp *RustPlugin) RunLinter(projectPath string) ([]ErrorInfo, error) {
 	if !checkCommandExists("cargo") {
 		return nil, fmt.Errorf("cargo not available")
 	}
-	
+
 	output, err := runCommand("cargo", []string{"clippy"}, projectPath, 60*time.Second)
 	if err != nil && output != "" {
 		return parseErrorWithRegex(output, rp.ErrorPatterns), nil
 	}
-	
+
 	return []ErrorInfo{}, nil
 }
 
@@ -264,11 +264,11 @@ func (pp *PHPPlugin) AnalyzeErrors(projectPath string) ([]ErrorInfo, error) {
 	if !checkCommandExists("php") {
 		return nil, fmt.Errorf("PHP not available")
 	}
-	
+
 	// Run syntax check on PHP files
 	phpFiles, _ := findFilesWithExtensions(projectPath, pp.Extensions)
 	var errors []ErrorInfo
-	
+
 	for _, file := range phpFiles {
 		output, err := runCommand("php", []string{"-l", file}, projectPath, 10*time.Second)
 		if err != nil && output != "" {
@@ -276,7 +276,7 @@ func (pp *PHPPlugin) AnalyzeErrors(projectPath string) ([]ErrorInfo, error) {
 			errors = append(errors, fileErrors...)
 		}
 	}
-	
+
 	return errors, nil
 }
 
@@ -329,11 +329,11 @@ func (rp *RubyPlugin) AnalyzeErrors(projectPath string) ([]ErrorInfo, error) {
 	if !checkCommandExists("ruby") {
 		return nil, fmt.Errorf("Ruby not available")
 	}
-	
+
 	// Run syntax check on Ruby files
 	rubyFiles, _ := findFilesWithExtensions(projectPath, rp.Extensions)
 	var errors []ErrorInfo
-	
+
 	for _, file := range rubyFiles {
 		output, err := runCommand("ruby", []string{"-c", file}, projectPath, 10*time.Second)
 		if err != nil && output != "" {
@@ -341,7 +341,7 @@ func (rp *RubyPlugin) AnalyzeErrors(projectPath string) ([]ErrorInfo, error) {
 			errors = append(errors, fileErrors...)
 		}
 	}
-	
+
 	return errors, nil
 }
 

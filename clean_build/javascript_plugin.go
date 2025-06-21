@@ -61,10 +61,10 @@ func NewJavaScriptPlugin() *JavaScriptPlugin {
 					ColumnRegex: ``,
 				},
 				{
-					Pattern:     `Failed to compile`,
-					Type:        "build",
-					Severity:    "error",
-					Language:    "javascript",
+					Pattern:  `Failed to compile`,
+					Type:     "build",
+					Severity: "error",
+					Language: "javascript",
 				},
 				{
 					Pattern:     `warning .+`,
@@ -372,8 +372,8 @@ func (jsp *JavaScriptPlugin) analyzePackageJSONServices(packageJSONPath string) 
 	var services []ServiceInfo
 
 	var pkg struct {
-		Name    string            `json:"name"`
-		Scripts map[string]string `json:"scripts"`
+		Name         string            `json:"name"`
+		Scripts      map[string]string `json:"scripts"`
 		Dependencies map[string]string `json:"dependencies"`
 	}
 
@@ -412,12 +412,12 @@ func (jsp *JavaScriptPlugin) analyzePackageJSONServices(packageJSONPath string) 
 	}
 
 	service := ServiceInfo{
-		ID:        fmt.Sprintf("js-%s", pkg.Name),
-		Name:      pkg.Name,
-		Language:  "javascript",
-		Framework: framework,
-		Port:      defaultPort,
-		Status:    status,
+		ID:         fmt.Sprintf("js-%s", pkg.Name),
+		Name:       pkg.Name,
+		Language:   "javascript",
+		Framework:  framework,
+		Port:       defaultPort,
+		Status:     status,
 		ConfigFile: "package.json",
 	}
 
@@ -465,7 +465,7 @@ func (jsp *JavaScriptPlugin) RunTests(projectPath string) (*TestResults, error) 
 
 	// Run tests
 	output, err := runCommand("npm", []string{"test"}, projectPath, 120*time.Second)
-	
+
 	// Parse test results (this is a simplified parser - real implementation would be more robust)
 	results := &TestResults{
 		LastRun: time.Now(),

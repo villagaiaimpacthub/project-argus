@@ -43,23 +43,23 @@ func NewTypeScriptPlugin() *TypeScriptPlugin {
 					ColumnRegex: `.+\(\d+,(\d+)\):`,
 				},
 				{
-					Pattern:     `Cannot find module .+`,
-					Type:        "import",
-					Severity:    "error",
-					Language:    "typescript",
-					FileRegex:   `in (.+)`,
+					Pattern:   `Cannot find module .+`,
+					Type:      "import",
+					Severity:  "error",
+					Language:  "typescript",
+					FileRegex: `in (.+)`,
 				},
 				{
-					Pattern:     `Property .+ does not exist on type .+`,
-					Type:        "type",
-					Severity:    "error",
-					Language:    "typescript",
+					Pattern:  `Property .+ does not exist on type .+`,
+					Type:     "type",
+					Severity: "error",
+					Language: "typescript",
 				},
 				{
-					Pattern:     `Argument of type .+ is not assignable to parameter of type .+`,
-					Type:        "type",
-					Severity:    "error",
-					Language:    "typescript",
+					Pattern:  `Argument of type .+ is not assignable to parameter of type .+`,
+					Type:     "type",
+					Severity: "error",
+					Language: "typescript",
 				},
 				{
 					Pattern:     `warning TS\d+: .+`,
@@ -218,9 +218,9 @@ func (tsp *TypeScriptPlugin) runTSLint(projectPath string) ([]ErrorInfo, error) 
 // parseTSLintOutput parses TSLint JSON output
 func (tsp *TypeScriptPlugin) parseTSLintOutput(output string) ([]ErrorInfo, error) {
 	var tslintResults []struct {
-		Name      string `json:"name"`
-		RuleName  string `json:"ruleName"`
-		StartPos  struct {
+		Name     string `json:"name"`
+		RuleName string `json:"ruleName"`
+		StartPos struct {
 			Line      int `json:"line"`
 			Character int `json:"character"`
 		} `json:"startPosition"`
@@ -228,7 +228,7 @@ func (tsp *TypeScriptPlugin) parseTSLintOutput(output string) ([]ErrorInfo, erro
 			Line      int `json:"line"`
 			Character int `json:"character"`
 		} `json:"endPosition"`
-		Failure   string `json:"failure"`
+		Failure      string `json:"failure"`
 		RuleSeverity string `json:"ruleSeverity"`
 	}
 
@@ -406,11 +406,11 @@ func (tsp *TypeScriptPlugin) RunTests(projectPath string) (*TestResults, error) 
 // ParseBuildOutput parses TypeScript build output for errors
 func (tsp *TypeScriptPlugin) ParseBuildOutput(output string) ([]ErrorInfo, error) {
 	errors := parseErrorWithRegex(output, tsp.ErrorPatterns)
-	
+
 	// Also parse JavaScript build errors since TS projects often have mixed content
 	jsPlugin := NewJavaScriptPlugin()
 	jsErrors, _ := jsPlugin.ParseBuildOutput(output)
 	errors = append(errors, jsErrors...)
-	
+
 	return errors, nil
 }

@@ -73,8 +73,8 @@ type DetectedLanguage struct {
 // ErrorPattern represents language-specific error detection patterns
 type ErrorPattern struct {
 	Pattern     string `json:"pattern"`
-	Type        string `json:"type"`        // "syntax", "runtime", "lint", "test", "build"
-	Severity    string `json:"severity"`    // "error", "warning", "info"
+	Type        string `json:"type"`     // "syntax", "runtime", "lint", "test", "build"
+	Severity    string `json:"severity"` // "error", "warning", "info"
 	LineRegex   string `json:"line_regex"`
 	ColumnRegex string `json:"column_regex"`
 	FileRegex   string `json:"file_regex"`
@@ -88,7 +88,7 @@ type ServiceInfo struct {
 	Language     string            `json:"language"`
 	Framework    string            `json:"framework"`
 	Port         int               `json:"port"`
-	Status       string            `json:"status"`     // "running", "stopped", "error"
+	Status       string            `json:"status"` // "running", "stopped", "error"
 	ProcessID    int               `json:"process_id"`
 	ConfigFile   string            `json:"config_file"`
 	Endpoints    []APIEndpoint     `json:"endpoints"`
@@ -98,13 +98,13 @@ type ServiceInfo struct {
 
 // APIEndpoint represents discovered API endpoints
 type APIEndpoint struct {
-	Path     string            `json:"path"`
-	Method   string            `json:"method"`
-	Handler  string            `json:"handler"`
-	File     string            `json:"file"`
-	Line     int               `json:"line"`
-	Params   []string          `json:"params"`
-	Headers  map[string]string `json:"headers"`
+	Path    string            `json:"path"`
+	Method  string            `json:"method"`
+	Handler string            `json:"handler"`
+	File    string            `json:"file"`
+	Line    int               `json:"line"`
+	Params  []string          `json:"params"`
+	Headers map[string]string `json:"headers"`
 }
 
 // ProjectTopology represents the overall project structure and relationships
@@ -121,22 +121,22 @@ type ProjectTopology struct {
 type ServiceRelation struct {
 	From         string    `json:"from"`
 	To           string    `json:"to"`
-	Type         string    `json:"type"`         // "api_call", "database_query", "import", "dependency"
-	Protocol     string    `json:"protocol"`     // "http", "grpc", "direct", "file_system"
-	Confidence   float64   `json:"confidence"`   // 0.0-1.0 confidence level
-	Evidence     []string  `json:"evidence"`     // Files/lines that show this relationship
+	Type         string    `json:"type"`       // "api_call", "database_query", "import", "dependency"
+	Protocol     string    `json:"protocol"`   // "http", "grpc", "direct", "file_system"
+	Confidence   float64   `json:"confidence"` // 0.0-1.0 confidence level
+	Evidence     []string  `json:"evidence"`   // Files/lines that show this relationship
 	LastDetected time.Time `json:"last_detected"`
 }
 
 // DatabaseInfo represents database connection information
 type DatabaseInfo struct {
 	ID           string            `json:"id"`
-	Type         string            `json:"type"`         // "postgresql", "mysql", "mongodb", "redis"
+	Type         string            `json:"type"` // "postgresql", "mysql", "mongodb", "redis"
 	Host         string            `json:"host"`
 	Port         int               `json:"port"`
 	Database     string            `json:"database"`
 	Status       string            `json:"status"`
-	UsedBy       []string          `json:"used_by"`      // Service IDs that use this database
+	UsedBy       []string          `json:"used_by"`       // Service IDs that use this database
 	ConfigSource string            `json:"config_source"` // Where the config was found
 	Environment  map[string]string `json:"environment"`
 }
@@ -149,7 +149,7 @@ func NewLanguageDetector(workspace string) *LanguageDetector {
 		BuildSystems: []BuildTool{},
 		workspace:    workspace,
 	}
-	
+
 	detector.initializeLanguageSupport()
 	return detector
 }
@@ -279,7 +279,7 @@ func (ld *LanguageDetector) DetectLanguages() ([]DetectedLanguage, error) {
 	defer ld.mutex.Unlock()
 
 	detected := make(map[string]*DetectedLanguage)
-	
+
 	// Walk through the workspace to analyze files
 	err := filepath.WalkDir(ld.workspace, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
@@ -303,7 +303,7 @@ func (ld *LanguageDetector) DetectLanguages() ([]DetectedLanguage, error) {
 		// Analyze files by extension
 		ext := strings.ToLower(filepath.Ext(path))
 		relPath, _ := filepath.Rel(ld.workspace, path)
-		
+
 		// Check for config files
 		filename := strings.ToLower(d.Name())
 		for langName, lang := range ld.Languages {
@@ -323,7 +323,7 @@ func (ld *LanguageDetector) DetectLanguages() ([]DetectedLanguage, error) {
 					}
 					detected[langName].FileCount++
 					detected[langName].LineCount += ld.countFileLines(path)
-					
+
 					// Check if it's a main file
 					if ld.isMainFile(filename, langName) {
 						detected[langName].MainFiles = append(detected[langName].MainFiles, relPath)
@@ -331,7 +331,7 @@ func (ld *LanguageDetector) DetectLanguages() ([]DetectedLanguage, error) {
 					break
 				}
 			}
-			
+
 			// Check config files
 			for _, configFile := range lang.ConfigFiles {
 				if filename == strings.ToLower(configFile) {
@@ -347,7 +347,7 @@ func (ld *LanguageDetector) DetectLanguages() ([]DetectedLanguage, error) {
 						}
 					}
 					detected[langName].ConfigFiles = append(detected[langName].ConfigFiles, relPath)
-					
+
 					// Detect frameworks and package managers
 					ld.analyzeConfigFile(path, filename, detected[langName])
 				}
@@ -390,8 +390,8 @@ func (ld *LanguageDetector) countFileLines(path string) int {
 // isMainFile checks if a file is considered a main entry point
 func (ld *LanguageDetector) isMainFile(filename, language string) bool {
 	mainFiles := map[string][]string{
-		"javascript":  {"index.js", "app.js", "main.js", "server.js"},
-		"typescript":  {"index.ts", "app.ts", "main.ts", "server.ts"},
+		"javascript": {"index.js", "app.js", "main.js", "server.js"},
+		"typescript": {"index.ts", "app.ts", "main.ts", "server.ts"},
 		"python":     {"main.py", "app.py", "manage.py", "__init__.py"},
 		"go":         {"main.go", "cmd.go"},
 		"java":       {"Main.java", "Application.java", "App.java"},

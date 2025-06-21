@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Argus - Investigation Snapshots</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #64ffda;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            opacity: 0.8;
+            font-size: 1.1em;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #64ffda;
+            color: #1a1a2e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: #4fd3b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(100, 255, 218, 0.3);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .main {
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2.5em;
+            color: #64ffda;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            opacity: 0.8;
+        }
+
+        .snapshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .snapshot-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .snapshot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: #64ffda;
+        }
+
+        .snapshot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #64ffda, #4fd3b3);
+        }
+
+        .snapshot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .snapshot-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #64ffda;
+            margin-bottom: 5px;
+        }
+
+        .snapshot-version {
+            background: rgba(100, 255, 218, 0.2);
+            color: #64ffda;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .snapshot-description {
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .snapshot-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .meta-label {
+            opacity: 0.7;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-value {
+            font-weight: bold;
+        }
+
+        .snapshot-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.8em;
+            color: white;
+        }
+
+        .snapshot-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn.primary {
+            background: #64ffda;
+            color: #1a1a2e;
+        }
+
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .timeline {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .timeline h2 {
+            color: #64ffda;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 50px;
+            bottom: -20px;
+            width: 2px;
+            background: linear-gradient(to bottom, #64ffda, transparent);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #64ffda;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+            z-index: 2;
+            position: relative;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            color: #64ffda;
+            margin-bottom: 5px;
+        }
+
+        .timeline-time {
+            opacity: 0.7;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .modal h2 {
+            color: #64ffda;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #64ffda;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(100, 255, 218, 0.3);
+            border-top: 4px solid #64ffda;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            opacity: 0.7;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗂️ Investigation Snapshots</h1>
+        <p class="subtitle">Manage your collaborative investigation states and restore previous contexts</p>
+        <div class="controls">
+            <button class="btn" onclick="showCreateModal()">
+                📸 Create Snapshot
+            </button>
+            <button class="btn secondary" onclick="refreshSnapshots()">
+                🔄 Refresh
+            </button>
+            <button class="btn secondary" onclick="window.location.href='/mindmap'">
+                🧠 Mind Map
+            </button>
+            <button class="btn secondary" onclick="window.location.href='/'">
+                🏠 Dashboard
+            </button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="stats-cards">
+            <div class="stat-card">
+                <h3 id="totalSnapshots">-</h3>
+                <p>Total Snapshots</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="recentSnapshots">-</h3>
+                <p>This Week</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="activeInvestigations">-</h3>
+                <p>Active Investigations</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalSize">-</h3>
+                <p>Total Size</p>
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading snapshots...</p>
+        </div>
+
+        <div class="snapshots-grid" id="snapshotsGrid">
+            <!-- Snapshots will be dynamically populated here -->
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <h3>No Snapshots Yet</h3>
+            <p>Create your first investigation snapshot to save and share your progress</p>
+        </div>
+
+        <div class="timeline" id="timeline">
+            <h2>📈 Investigation Timeline</h2>
+            <div class="timeline-container" id="timelineContainer">
+                <!-- Timeline items will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Snapshot Modal -->
+    <div class="modal" id="createModal">
+        <div class="modal-content">
+            <h2>📸 Create New Snapshot</h2>
+            <form id="createSnapshotForm">
+                <div class="form-group">
+                    <label for="snapshotName">Snapshot Name</label>
+                    <input type="text" id="snapshotName" required placeholder="e.g., Bug Investigation Checkpoint">
+                </div>
+                <div class="form-group">
+                    <label for="snapshotDescription">Description</label>
+                    <textarea id="snapshotDescription" placeholder="Describe what was discovered and what's next..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn secondary" onclick="hideCreateModal()">Cancel</button>
+                    <button type="submit" class="btn">Create Snapshot</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        class SnapshotManager {
+            constructor() {
+                this.snapshots = [];
+                this.loadSnapshots();
+            }
+
+            async loadSnapshots() {
+                try {
+                    document.getElementById('loading').style.display = 'block';
+                    document.getElementById('snapshotsGrid').style.display = 'none';
+                    
+                    const response = await fetch('/api/snapshots');
+                    const data = await response.json();
+                    
+                    this.snapshots = data.snapshots || [];
+                    this.updateStats();
+                    this.renderSnapshots();
+                    this.renderTimeline();
+                    
+                } catch (error) {
+                    console.error('Failed to load snapshots:', error);
+                    this.showError('Failed to load snapshots');
+                } finally {
+                    document.getElementById('loading').style.display = 'none';
+                }
+            }
+
+            updateStats() {
+                const now = new Date();
+                const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                
+                const recentCount = this.snapshots.filter(s => 
+                    new Date(s.created_at) > weekAgo
+                ).length;
+                
+                const totalSize = this.snapshots.reduce((sum, s) => sum + (s.size || 0), 0);
+                
+                document.getElementById('totalSnapshots').textContent = this.snapshots.length;
+                document.getElementById('recentSnapshots').textContent = recentCount;
+                document.getElementById('activeInvestigations').textContent = Math.min(this.snapshots.length, 3); // Mock active count
+                document.getElementById('totalSize').textContent = this.formatSize(totalSize);
+            }
+
+            formatSize(bytes) {
+                if (bytes === 0) return '0 B';
+                const k = 1024;
+                const sizes = ['B', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+            }
+
+            renderSnapshots() {
+                const grid = document.getElementById('snapshotsGrid');
+                const emptyState = document.getElementById('emptyState');
+                
+                if (this.snapshots.length === 0) {
+                    grid.style.display = 'none';
+                    emptyState.style.display = 'block';
+                    return;
+                }
+                
+                grid.style.display = 'grid';
+                emptyState.style.display = 'none';
+                
+                grid.innerHTML = this.snapshots.map(snapshot => this.createSnapshotCard(snapshot)).join('');
+            }
+
+            createSnapshotCard(snapshot) {
+                const createdAt = new Date(snapshot.created_at);
+                const updatedAt = new Date(snapshot.updated_at);
+                
+                return `
+                    <div class="snapshot-card" data-id="${snapshot.id}">
+                        <div class="snapshot-header">
+                            <div>
+                                <div class="snapshot-title">${snapshot.name}</div>
+                                <div class="snapshot-version">v${snapshot.version}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="snapshot-description">
+                            ${snapshot.description || 'No description provided'}
+                        </div>
+                        
+                        <div class="snapshot-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">Created</div>
+                                <div class="meta-value">${this.formatDate(createdAt)}</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Size</div>
+                                <div class="meta-value">${this.formatSize(snapshot.size || 0)}</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Updated</div>
+                                <div class="meta-value">${this.formatDate(updatedAt)}</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Tags</div>
+                                <div class="meta-value">${(snapshot.tags || []).length} tags</div>
+                            </div>
+                        </div>
+                        
+                        <div class="snapshot-tags">
+                            ${(snapshot.tags || []).slice(0, 3).map(tag => 
+                                `<span class="tag">${tag}</span>`
+                            ).join('')}
+                            ${(snapshot.tags || []).length > 3 ? `<span class="tag">+${(snapshot.tags || []).length - 3} more</span>` : ''}
+                        </div>
+                        
+                        <div class="snapshot-actions">
+                            <button class="action-btn primary" onclick="restoreSnapshot('${snapshot.id}')">
+                                🔄 Restore
+                            </button>
+                            <button class="action-btn secondary" onclick="viewSnapshot('${snapshot.id}')">
+                                👁️ View
+                            </button>
+                            <button class="action-btn secondary" onclick="forkSnapshot('${snapshot.id}')">
+                                🍴 Fork
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            renderTimeline() {
+                const container = document.getElementById('timelineContainer');
+                const sortedSnapshots = [...this.snapshots].sort((a, b) => 
+                    new Date(b.created_at) - new Date(a.created_at)
+                ).slice(0, 5); // Show only latest 5
+                
+                container.innerHTML = sortedSnapshots.map((snapshot, index) => `
+                    <div class="timeline-item">
+                        <div class="timeline-dot">${index + 1}</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">${snapshot.name}</div>
+                            <div class="timeline-time">${this.formatDate(new Date(snapshot.created_at))}</div>
+                            <p>${snapshot.description || 'No description'}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            formatDate(date) {
+                const now = new Date();
+                const diff = now - date;
+                const minutes = Math.floor(diff / 60000);
+                const hours = Math.floor(diff / 3600000);
+                const days = Math.floor(diff / 86400000);
+                
+                if (minutes < 60) return `${minutes}m ago`;
+                if (hours < 24) return `${hours}h ago`;
+                if (days < 7) return `${days}d ago`;
+                return date.toLocaleDateString();
+            }
+
+            async createSnapshot(name, description) {
+                try {
+                    const response = await fetch('/api/snapshots', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ name, description }),
+                    });
+                    
+                    if (response.ok) {
+                        await this.loadSnapshots();
+                        this.showSuccess('Snapshot created successfully!');
+                    } else {
+                        throw new Error('Failed to create snapshot');
+                    }
+                } catch (error) {
+                    console.error('Error creating snapshot:', error);
+                    this.showError('Failed to create snapshot');
+                }
+            }
+
+            showSuccess(message) {
+                // Simple success notification (could be enhanced with a proper toast system)
+                alert(`✅ ${message}`);
+            }
+
+            showError(message) {
+                // Simple error notification (could be enhanced with a proper toast system)
+                alert(`❌ ${message}`);
+            }
+        }
+
+        // Global functions for UI interactions
+        let snapshotManager;
+
+        function showCreateModal() {
+            document.getElementById('createModal').classList.add('active');
+        }
+
+        function hideCreateModal() {
+            document.getElementById('createModal').classList.remove('active');
+            document.getElementById('createSnapshotForm').reset();
+        }
+
+        function refreshSnapshots() {
+            snapshotManager.loadSnapshots();
+        }
+
+        async function restoreSnapshot(id) {
+            if (confirm('This will restore the project state from this snapshot. Continue?')) {
+                try {
+                    const response = await fetch(`/api/snapshots/${id}/restore`, {
+                        method: 'POST'
+                    });
+                    
+                    if (response.ok) {
+                        alert('✅ Snapshot restored successfully!');
+                    } else {
+                        throw new Error('Failed to restore snapshot');
+                    }
+                } catch (error) {
+                    alert('❌ Failed to restore snapshot');
+                }
+            }
+        }
+
+        async function viewSnapshot(id) {
+            try {
+                const response = await fetch(`/api/snapshots/${id}`);
+                const snapshot = await response.json();
+                
+                // Open a new window or modal to display snapshot details
+                const detailWindow = window.open('', '_blank', 'width=800,height=600');
+                detailWindow.document.write(`
+                    <html>
+                        <head><title>Snapshot: ${snapshot.name}</title></head>
+                        <body>
+                            <h1>${snapshot.name}</h1>
+                            <pre>${JSON.stringify(snapshot, null, 2)}</pre>
+                        </body>
+                    </html>
+                `);
+            } catch (error) {
+                alert('❌ Failed to load snapshot details');
+            }
+        }
+
+        async function forkSnapshot(id) {
+            const name = prompt('Enter name for the forked snapshot:');
+            if (name) {
+                const description = prompt('Enter description (optional):') || '';
+                
+                try {
+                    const response = await fetch(`/api/snapshots/${id}/fork`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ name, description }),
+                    });
+                    
+                    if (response.ok) {
+                        await snapshotManager.loadSnapshots();
+                        alert('✅ Snapshot forked successfully!');
+                    } else {
+                        throw new Error('Failed to fork snapshot');
+                    }
+                } catch (error) {
+                    alert('❌ Failed to fork snapshot');
+                }
+            }
+        }
+
+        // Form submission
+        document.getElementById('createSnapshotForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('snapshotName').value;
+            const description = document.getElementById('snapshotDescription').value;
+            
+            await snapshotManager.createSnapshot(name, description);
+            hideCreateModal();
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            snapshotManager = new SnapshotManager();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('createModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('createModal')) {
+                hideCreateModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -25,72 +25,72 @@ func NewPythonPlugin() *PythonPlugin {
 			ConfigFiles: []string{"requirements.txt", "pyproject.toml", "setup.py", "setup.cfg", "Pipfile", "poetry.lock", "tox.ini"},
 			ErrorPatterns: []ErrorPattern{
 				{
-					Pattern:     `SyntaxError: .+`,
-					Type:        "syntax",
-					Severity:    "error",
-					Language:    "python",
-					FileRegex:   `File "(.+)", line (\d+)`,
-					LineRegex:   `line (\d+)`,
+					Pattern:   `SyntaxError: .+`,
+					Type:      "syntax",
+					Severity:  "error",
+					Language:  "python",
+					FileRegex: `File "(.+)", line (\d+)`,
+					LineRegex: `line (\d+)`,
 				},
 				{
-					Pattern:     `IndentationError: .+`,
-					Type:        "syntax",
-					Severity:    "error",
-					Language:    "python",
-					FileRegex:   `File "(.+)", line (\d+)`,
-					LineRegex:   `line (\d+)`,
+					Pattern:   `IndentationError: .+`,
+					Type:      "syntax",
+					Severity:  "error",
+					Language:  "python",
+					FileRegex: `File "(.+)", line (\d+)`,
+					LineRegex: `line (\d+)`,
 				},
 				{
-					Pattern:     `NameError: .+`,
-					Type:        "runtime",
-					Severity:    "error",
-					Language:    "python",
-					FileRegex:   `File "(.+)", line (\d+)`,
-					LineRegex:   `line (\d+)`,
+					Pattern:   `NameError: .+`,
+					Type:      "runtime",
+					Severity:  "error",
+					Language:  "python",
+					FileRegex: `File "(.+)", line (\d+)`,
+					LineRegex: `line (\d+)`,
 				},
 				{
-					Pattern:     `TypeError: .+`,
-					Type:        "runtime",
-					Severity:    "error",
-					Language:    "python",
-					FileRegex:   `File "(.+)", line (\d+)`,
-					LineRegex:   `line (\d+)`,
+					Pattern:   `TypeError: .+`,
+					Type:      "runtime",
+					Severity:  "error",
+					Language:  "python",
+					FileRegex: `File "(.+)", line (\d+)`,
+					LineRegex: `line (\d+)`,
 				},
 				{
-					Pattern:     `AttributeError: .+`,
-					Type:        "runtime",
-					Severity:    "error",
-					Language:    "python",
-					FileRegex:   `File "(.+)", line (\d+)`,
-					LineRegex:   `line (\d+)`,
+					Pattern:   `AttributeError: .+`,
+					Type:      "runtime",
+					Severity:  "error",
+					Language:  "python",
+					FileRegex: `File "(.+)", line (\d+)`,
+					LineRegex: `line (\d+)`,
 				},
 				{
-					Pattern:     `ImportError: .+`,
-					Type:        "import",
-					Severity:    "error",
-					Language:    "python",
-					FileRegex:   `File "(.+)", line (\d+)`,
-					LineRegex:   `line (\d+)`,
+					Pattern:   `ImportError: .+`,
+					Type:      "import",
+					Severity:  "error",
+					Language:  "python",
+					FileRegex: `File "(.+)", line (\d+)`,
+					LineRegex: `line (\d+)`,
 				},
 				{
-					Pattern:     `ModuleNotFoundError: .+`,
-					Type:        "import",
-					Severity:    "error",
-					Language:    "python",
-					FileRegex:   `File "(.+)", line (\d+)`,
-					LineRegex:   `line (\d+)`,
+					Pattern:   `ModuleNotFoundError: .+`,
+					Type:      "import",
+					Severity:  "error",
+					Language:  "python",
+					FileRegex: `File "(.+)", line (\d+)`,
+					LineRegex: `line (\d+)`,
 				},
 				{
-					Pattern:     `FAILED .+ - .+`,
-					Type:        "test",
-					Severity:    "error",
-					Language:    "python",
+					Pattern:  `FAILED .+ - .+`,
+					Type:     "test",
+					Severity: "error",
+					Language: "python",
 				},
 				{
-					Pattern:     `ERROR .+ - .+`,
-					Type:        "test",
-					Severity:    "error",
-					Language:    "python",
+					Pattern:  `ERROR .+ - .+`,
+					Type:     "test",
+					Severity: "error",
+					Language: "python",
 				},
 			},
 		},
@@ -149,8 +149,8 @@ func (pp *PythonPlugin) checkSyntaxErrors(projectPath string) []ErrorInfo {
 
 	for _, file := range pyFiles {
 		// Skip virtual environments and cache directories
-		if strings.Contains(file, "venv") || strings.Contains(file, "__pycache__") || 
-		   strings.Contains(file, ".env") || strings.Contains(file, "site-packages") {
+		if strings.Contains(file, "venv") || strings.Contains(file, "__pycache__") ||
+			strings.Contains(file, ".env") || strings.Contains(file, "site-packages") {
 			continue
 		}
 
@@ -182,13 +182,13 @@ func (pp *PythonPlugin) parsePythonSyntaxError(output, file string) *ErrorInfo {
 			fileName = matches[1]
 			line, _ = strconv.Atoi(matches[2])
 		}
-		
+
 		if matches := errorRegex.FindStringSubmatch(lineText); len(matches) == 3 {
 			errorType = matches[1]
 			message = matches[2]
 			break
 		}
-		
+
 		// Sometimes the error is on the next line
 		if i+1 < len(lines) {
 			if matches := errorRegex.FindStringSubmatch(lines[i+1]); len(matches) == 3 {
@@ -529,23 +529,23 @@ func (pp *PythonPlugin) parsePyProjectToml(pyprojectPath string) ([]DependencyIn
 
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
-		
+
 		if line == "[tool.poetry.dependencies]" || line == "[project.dependencies]" {
 			inDependencies = true
 			continue
 		}
-		
+
 		if strings.HasPrefix(line, "[") && inDependencies {
 			inDependencies = false
 			continue
 		}
-		
+
 		if inDependencies && strings.Contains(line, "=") {
 			parts := strings.Split(line, "=")
 			if len(parts) >= 2 {
 				name := strings.TrimSpace(parts[0])
 				version := strings.Trim(strings.TrimSpace(parts[1]), `"'`)
-				
+
 				deps = append(deps, DependencyInfo{
 					Name:    name,
 					Version: version,
@@ -573,23 +573,23 @@ func (pp *PythonPlugin) parsePipfile(pipfilePath string) ([]DependencyInfo, erro
 
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
-		
+
 		if line == "[packages]" {
 			inPackages = true
 			continue
 		}
-		
+
 		if strings.HasPrefix(line, "[") && inPackages {
 			inPackages = false
 			continue
 		}
-		
+
 		if inPackages && strings.Contains(line, "=") {
 			parts := strings.Split(line, "=")
 			if len(parts) >= 2 {
 				name := strings.TrimSpace(parts[0])
 				version := strings.Trim(strings.TrimSpace(parts[1]), `"'`)
-				
+
 				deps = append(deps, DependencyInfo{
 					Name:    name,
 					Version: version,
@@ -657,38 +657,38 @@ func (pp *PythonPlugin) detectPythonFramework(projectPath string) string {
 // hasFlaskApp checks for Flask application indicators
 func (pp *PythonPlugin) hasFlaskApp(projectPath string) bool {
 	pyFiles, _ := findFilesWithExtensions(projectPath, pp.Extensions)
-	
+
 	for _, file := range pyFiles {
 		content, err := os.ReadFile(file)
 		if err != nil {
 			continue
 		}
-		
+
 		contentStr := string(content)
 		if strings.Contains(contentStr, "from flask import") || strings.Contains(contentStr, "Flask(__name__)") {
 			return true
 		}
 	}
-	
+
 	return false
 }
 
 // hasFastAPIApp checks for FastAPI application indicators
 func (pp *PythonPlugin) hasFastAPIApp(projectPath string) bool {
 	pyFiles, _ := findFilesWithExtensions(projectPath, pp.Extensions)
-	
+
 	for _, file := range pyFiles {
 		content, err := os.ReadFile(file)
 		if err != nil {
 			continue
 		}
-		
+
 		contentStr := string(content)
 		if strings.Contains(contentStr, "from fastapi import") || strings.Contains(contentStr, "FastAPI()") {
 			return true
 		}
 	}
-	
+
 	return false
 }
 
@@ -729,7 +729,7 @@ func (pp *PythonPlugin) RunTests(projectPath string) (*TestResults, error) {
 // runPyTest executes pytest
 func (pp *PythonPlugin) runPyTest(projectPath string) (*TestResults, error) {
 	output, err := runCommand("pytest", []string{"--tb=short", "-v"}, projectPath, 120*time.Second)
-	
+
 	results := &TestResults{
 		LastRun: time.Now(),
 	}
@@ -755,7 +755,7 @@ func (pp *PythonPlugin) runUnittest(projectPath string) (*TestResults, error) {
 	}
 
 	output, err := runCommand(pythonCmd, []string{"-m", "unittest", "discover", "-v"}, projectPath, 120*time.Second)
-	
+
 	results := &TestResults{
 		LastRun: time.Now(),
 	}
